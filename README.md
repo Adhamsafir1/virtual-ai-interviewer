@@ -39,44 +39,67 @@ Here is a breakdown of the core files in the `virtual-ai-interviewer` directory:
 
 ## ⚙️ How to Set Up & Run
 
-### Step 1: Set Up Local LiveKit Server (Recommended)
-Running LiveKit locally reduces latency and developer API costs.
+### Step 1: Navigate to the Project Directory
+Open your terminal and ensure you are inside the project folder:
+```powershell
+cd virtual-ai-interviewer
+```
 
-* **Via Docker**:
+### Step 2: Create a Virtual Environment
+Create a clean local Python virtual environment (`.venv`) inside the project folder:
+```powershell
+python -m venv .venv
+```
+
+### Step 3: Activate the Virtual Environment
+Activate the environment to ensure Python uses the local virtual environment packages:
+
+* **On Windows (PowerShell):**
   ```powershell
-  docker run --rm -p 7880:7880 -p 7881:7881 -p 7882:7882/udp livekit/livekit-server --dev
+  .\.venv\Scripts\Activate.ps1
   ```
-* **Configure keys in [.env.local](file:///d:/voice-pipeline/virtual-ai-interviewer/.env.local)**:
-  ```env
-  LIVEKIT_URL=ws://localhost:7880
-  LIVEKIT_API_KEY=devkey
-  LIVEKIT_API_SECRET=secret
+* **On macOS/Linux:**
+  ```bash
+  source .venv/bin/activate
   ```
 
-### Step 2: Install Dependencies
-Initialize virtual environment and sync dependencies:
-```powershell
-uv sync
-```
+Once activated, your terminal prompt will be prefixed with `(livekit-agent-voice)`.
 
-### Step 3: Download Model Files
-Download local voice activity detection (VAD) files:
-```powershell
-uv run python agent.py download-files
-```
+### Step 4: Install Dependencies
+Use `uv` (or standard `pip`) to install the dependencies defined in `pyproject.toml`:
 
-### Step 4: Place Files & Generate Questions
-1. Place a candidate resume (`resume.pdf`, `resume.docx`, or `resume.txt`) and a job description (`jd.pdf`, `jd.docx`, or `jd.txt`) in the root directory.
-2. Run the generation script:
+```powershell
+uv pip install -r pyproject.toml
+```
+*(Alternatively, you can run `pip install .`)*
+
+### Step 5: Download Model Files
+Download local voice activity detection (VAD) models and other plugin assets:
+```powershell
+uv run -m livekit.agents download-files
+```
+*(If `uv` is not used, run `python -m livekit.agents download-files`)*
+
+### Step 6: Place Files & Generate Questions
+1. Place a candidate resume (`resume.pdf`, `resume.docx`, or `resume.txt`) and a job description (`jd.pdf`, `jd.docx`, or `jd.txt`) in the `virtual-ai-interviewer` directory.
+2. Run the question generation script:
    ```powershell
-   uv run python generate_questions.py
+   python generate_questions.py
    ```
    This will auto-detect your files and produce [questions.json](file:///d:/voice-pipeline/virtual-ai-interviewer/questions.json).
 
-### Step 5: Start the Agent
-Run the agent in interactive console mode to test via your CLI:
+### Step 7: Start the Agent
+
+#### Run Mode A: Interactive Console Mode (Local CLI Testing)
+Test the agent using your terminal/keyboard/microphone without a web frontend:
 ```powershell
-uv run python agent.py console
+python agent.py console
+```
+
+#### Run Mode B: Agent Worker Mode (For Production/Web Frontend Integration)
+Start the agent worker to listen for incoming LiveKit connection requests:
+```powershell
+python agent.py dev
 ```
 
 ---
@@ -87,4 +110,4 @@ uv run python agent.py console
   * Candidate transcriptions print in green: `[CANDIDATE] >>> ...`
   * Interviewer speech prints in blue: `[INTERVIEWER] <<< ...`
 * **Scorecard**:
-  * After the interview ends, review the complete transcript log (covering core questions and dynamic follow-ups) in `interview_responses.json`.
+  * After the interview ends, review the complete transcript log (covering core questions and dynamic follow-ups) in [interview_responses.json](file:///d:/voice-pipeline/virtual-ai-interviewer/interview_responses.json).

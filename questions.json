@@ -2,85 +2,85 @@
   {
     "id": 1,
     "category": "Technical",
-    "question": "Can you describe a time when you designed and deployed a scalable ML system from scratch? Discuss the architecture, challenges faced, and how you ensured scalability and fault tolerance.",
+    "question": "Explain how you would design a scalable agentic system for real-time recommendation personalization on an e-commerce platform. Discuss the architecture, key components (e.g., user modeling, retrieval, ranking), and trade-offs between latency, accuracy, and cost.",
     "expected_key_points": [
-      "Detailed architecture of the ML system (e.g., microservices, batch/real-time pipelines)",
-      "Scalability considerations (e.g., load balancing, distributed training, model serving)",
-      "Fault tolerance mechanisms (e.g., retries, circuit breakers, monitoring)",
-      "Impact metrics (e.g., latency reduction, throughput improvement)"
+      "Describe a modular architecture (e.g., microservices, event-driven) with clear separation of concerns",
+      "Discuss techniques for handling real-time data (e.g., streaming, feature stores)",
+      "Explain trade-offs between rule-based vs. ML-based ranking and retrieval",
+      "Mention scalability considerations (e.g., sharding, caching, distributed training)"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 2,
     "category": "Technical",
-    "question": "Explain how you would design a real-time agentic system for automated lead triaging using LangChain or Crew AI. What components would you include, and how would you ensure low latency and high accuracy?",
+    "question": "Given a dataset with sparse user-item interactions, how would you design a hybrid recommender system combining collaborative filtering and deep learning? Provide a step-by-step approach, including data preprocessing, model selection, and evaluation metrics.",
     "expected_key_points": [
-      "Agentic workflow design (e.g., tool integration, memory, decision-making)",
-      "Real-time processing strategies (e.g., streaming, caching, async I/O)",
-      "Accuracy optimization (e.g., prompt engineering, model ensemble, feedback loops)",
-      "Latency mitigation (e.g., model quantization, edge deployment)"
+      "Explain how to combine matrix factorization (collaborative filtering) with neural networks (e.g., two-tower models)",
+      "Discuss data preprocessing (e.g., handling cold-start, implicit feedback)",
+      "Describe evaluation metrics (e.g., precision@k, recall@k, NDCG)",
+      "Mention techniques for handling sparsity (e.g., embeddings, side information)"
     ],
-    "difficulty": "Hard"
+    "difficulty": "Medium"
   },
   {
     "id": 3,
     "category": "Technical",
-    "question": "How would you implement a forecasting system for seller demand using time-series data? Discuss your approach to feature engineering, model selection, and evaluation.",
+    "question": "You are building a forecasting system to predict seller demand for Amazon’s global marketplace. How would you approach this problem using time-series forecasting models (e.g., ARIMA, Prophet, or deep learning)? Discuss feature engineering, model selection, and evaluation strategies.",
     "expected_key_points": [
-      "Feature engineering (e.g., lag features, rolling statistics, external data integration)",
-      "Model selection (e.g., ARIMA, Prophet, LSTM, Transformer-based models)",
-      "Evaluation metrics (e.g., MAE, RMSE, MAPE, business impact)",
-      "Deployment strategy (e.g., batch vs. real-time, A/B testing)"
+      "Explain feature engineering (e.g., lag features, rolling statistics, external factors)",
+      "Compare statistical (e.g., ARIMA) vs. deep learning (e.g., LSTMs, Transformers) approaches",
+      "Discuss evaluation metrics (e.g., MAE, RMSE, MAPE) and backtesting",
+      "Mention techniques for handling seasonality and trends"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 4,
     "category": "Technical",
-    "question": "Describe your experience with distributed training or inference for ML models. How would you optimize a PyTorch model for multi-GPU training or low-latency inference in production?",
+    "question": "How would you implement a fault-tolerant, distributed system for training a large-scale deep learning model (e.g., a transformer for NLP) using PyTorch or TensorFlow? Discuss data parallelism, model parallelism, and fault recovery strategies.",
     "expected_key_points": [
-      "Distributed training frameworks (e.g., PyTorch Distributed, Horovod)",
-      "Optimization techniques (e.g., mixed precision, gradient checkpointing, sharding)",
-      "Inference optimization (e.g., ONNX, TensorRT, model pruning)",
-      "Challenges and trade-offs (e.g., data parallelism vs. model parallelism)"
+      "Explain data parallelism (e.g., using PyTorch’s DistributedDataParallel)",
+      "Discuss model parallelism for large models (e.g., tensor sharding)",
+      "Describe fault recovery strategies (e.g., checkpointing, distributed training libraries like Horovod)",
+      "Mention monitoring and logging for distributed training"
     ],
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": 5,
     "category": "Gap Analysis",
-    "question": "Your resume highlights experience with LangChain and agentic systems, but the JD emphasizes RL and forecasting systems. Can you discuss any experience you have with reinforcement learning, or describe how you would approach designing an RL-based system for seller demand forecasting?",
+    "question": "Your resume highlights experience with LangChain and vector databases for RAG pipelines, but the JD emphasizes agentic systems and publications. Can you describe a project where you designed an agentic system (e.g., multi-agent workflows) and explain how you would extend this to a production-scale system?",
     "expected_key_points": [
-      "Understanding of RL fundamentals (e.g., Markov Decision Processes, Q-learning, PPO)",
-      "Application to forecasting (e.g., dynamic pricing, inventory optimization)",
-      "Challenges in RL (e.g., exploration vs. exploitation, reward shaping)",
-      "Comparison with traditional forecasting methods"
+      "Describe the agentic system’s architecture (e.g., modular agents, communication protocols)",
+      "Explain how the system was evaluated (e.g., metrics, user feedback)",
+      "Discuss scalability challenges and solutions (e.g., distributed agents, load balancing)",
+      "Mention any publications or white papers (if applicable)"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 6,
     "category": "Behavioral",
-    "question": "Tell me about a time when you had to deal with ambiguous requirements for an ML project. How did you approach the problem, and what steps did you take to distill the requirements into a clear ML problem statement?",
+    "question": "Tell me about a time when you had to deal with ambiguous requirements or shifting priorities in a project. How did you approach the problem, and what was the outcome?",
     "expected_key_points": [
-      "Approach to ambiguity (e.g., stakeholder interviews, prototyping, iterative refinement)",
-      "Problem definition (e.g., framing as classification/regression, defining success metrics)",
-      "Communication strategies (e.g., translating business needs to technical specs)",
-      "Outcome and lessons learned"
+      "Describe the context and ambiguity faced",
+      "Explain how you gathered requirements and iterated on solutions",
+      "Discuss collaboration with stakeholders and trade-offs made",
+      "Highlight the impact of your approach (e.g., improved system design, user satisfaction)"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 7,
     "category": "Situational",
-    "question": "Imagine you are leading a team to build a new GenAI system for Amazon sellers, but your initial model performs poorly in production due to distribution shift. How would you diagnose the issue, and what steps would you take to improve the system?",
+    "question": "Imagine you are leading a team to build a new forecasting system for Amazon’s sellers. Mid-way through the project, you discover that the model’s predictions are biased against certain seller categories. How would you diagnose the issue, address it, and ensure fairness in the system?",
     "expected_key_points": [
-      "Diagnosis (e.g., data drift analysis, model monitoring, A/B testing)",
-      "Root cause analysis (e.g., feature mismatch, label noise, concept drift)",
-      "Remediation (e.g., retraining, model updates, fallback strategies)",
-      "Preventive measures (e.g., continuous monitoring, CI/CD for models)"
+      "Explain how you would diagnose bias (e.g., data analysis, fairness metrics)",
+      "Discuss techniques for mitigating bias (e.g., reweighting, adversarial training)",
+      "Describe how you would communicate findings and solutions to stakeholders",
+      "Mention long-term strategies for monitoring and maintaining fairness"
     ],
-    "difficulty": "Hard"
+    "difficulty": "Medium"
   }
 ]
