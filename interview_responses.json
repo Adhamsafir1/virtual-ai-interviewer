@@ -1,55 +1,86 @@
 {
-  "interview_date": "2026-07-10T16:38:20.766844",
+  "interview_date": "2026-07-10T17:04:09.136971",
   "total_base_questions": 5,
   "responses": [
     {
       "question_number": 1,
-      "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) for a real-time AI interaction system? Include details about your choice of framework, database schema design, and how you handled concurrency and scalability challenges.",
-      "answer": "The candidate discussed focusing on architecture for scalability in a backend service. They mentioned Python frameworks like FastAPI or Django and emphasized the need for a scalable application but did not provide specific details about the architecture, framework choice, database schema design, or handling concurrency and scalability challenges.",
+      "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
+      "answer": "The candidate mentioned using ports to communicate between the frontend and backend via RESTful APIs, referring to it as a 'metal bar.' They did not provide specific details about versioning, pagination, caching, or rate limiting.",
       "is_followup": false,
-      "timestamp": "2026-07-10T16:36:19.655722"
+      "score": 2,
+      "feedback": "The answer lacked depth and specificity about RESTful API design and optimization. The candidate did not address versioning, pagination, caching, or rate limiting, which were key aspects of the question.",
+      "timestamp": "2026-07-10T17:01:32.563882"
     },
     {
       "question_number": 2,
-      "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) for a real-time AI interaction system? Include details about your choice of framework, database schema design, and how you handled concurrency and scalability challenges.",
-      "answer": "The candidate mentioned preferring updated services but did not elaborate on the architecture, framework choice, database schema design, or handling of concurrency and scalability challenges.",
-      "is_followup": true,
-      "timestamp": "2026-07-10T16:36:26.400317"
+      "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
+      "answer": "The candidate described using RESTful APIs primarily for communication between frontend and backend systems. They mentioned using POST methods for operations like batch processing and deletion. They also referenced a 'risk score' system to identify which services to call and mentioned a new discovery feature that allows query-based access to APIs.",
+      "is_followup": false,
+      "score": 4,
+      "feedback": "The candidate provided a vague and unclear response. They did not address versioning, pagination, caching, or rate limiting, which were the key aspects of the question. Their explanation focused on basic API usage without demonstrating depth or understanding of API optimization techniques.",
+      "timestamp": "2026-07-10T17:01:57.888336"
     },
     {
       "question_number": 3,
-      "question": "Describe a time when you had to mentor a junior developer on a complex full-stack feature. What challenges did you face, and how did you ensure the junior developer understood both the technical and architectural aspects of the solution?",
-      "answer": "The candidate mentioned mentoring a junior developer but did not provide specific details about the challenges faced, the approach taken, or how they ensured the junior developer understood the technical and architectural aspects of the solution.",
-      "is_followup": true,
-      "timestamp": "2026-07-10T16:37:03.145752"
+      "question": "Describe a time when you had to mentor a junior developer. What approach did you take to ensure they understood the concepts and could contribute effectively to the team?",
+      "answer": "The candidate mentioned providing junior developers with detailed project information and ensuring they had a strong foundational understanding. They emphasized the importance of sharing knowledge and freezing indirects (possibly a typo for 'indirect questions' or similar) without further questioning.",
+      "is_followup": false,
+      "score": 3,
+      "feedback": "The response was unclear and lacked specific details about mentoring approaches. The candidate did not demonstrate a structured method for mentoring or ensuring understanding, and their explanation was vague and difficult to follow.",
+      "timestamp": "2026-07-10T17:03:02.536989"
     },
     {
       "question_number": 4,
-      "question": "Describe a time when you had to mentor a junior developer on a complex full-stack feature. What challenges did you face, and how did you ensure the junior developer understood both the technical and architectural aspects of the solution?",
-      "answer": "The candidate described mentoring a junior developer by providing a complete explanation of the task and addressing any doubts. They emphasized resolving doubts to ensure the junior developer could build everything effectively.",
-      "is_followup": false,
-      "timestamp": "2026-07-10T16:37:21.812369"
+      "question": "What approach did you take to structure the information or guide them through the learning process?",
+      "answer": "The candidate repeated their previous vague explanation about providing project information and ensuring a strong foundation. They reiterated the idea of freezing indirects without further questioning but did not clarify their mentoring approach.",
+      "is_followup": true,
+      "score": 2,
+      "feedback": "The candidate's response was unclear and did not address the question about structuring information or guiding the learning process. Their explanation remained vague and lacked actionable details.",
+      "timestamp": "2026-07-10T17:03:16.554507"
     },
     {
       "question_number": 5,
-      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
-      "answer": "The candidate mentioned using load balancing for handling multiple users reaching the server simultaneously but did not elaborate on the full design for integrating a third-party AI service with rate limits and latency spikes. They did not discuss error handling, retries, or fallback mechanisms.",
-      "is_followup": true,
-      "timestamp": "2026-07-10T16:37:58.209626"
+      "question": "Imagine you're tasked with integrating a third-party AI service into an existing full-stack application. The service has strict latency requirements, and your current infrastructure isn't meeting those needs. How would you approach this problem?",
+      "answer": "The candidate stated they did not have an answer to the question.",
+      "is_followup": false,
+      "score": 1,
+      "feedback": "The candidate admitted to not knowing how to approach the problem, indicating a lack of familiarity or experience with infrastructure optimization, latency management, or third-party integrations.",
+      "timestamp": "2026-07-10T17:03:37.849607"
     },
     {
       "question_number": 6,
-      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
-      "answer": "The candidate mentioned scaling as a result of handling multiple users but did not provide details on designing the integration for reliability, performance, or graceful degradation. They also did not discuss error handling, retries, or fallback mechanisms.",
-      "is_followup": true,
-      "timestamp": "2026-07-10T16:38:00.648003"
+      "question": "The job requires experience with WebRTC for real-time communication features, but your resume doesn't explicitly mention this technology. Can you share any experience you have with real-time communication technologies or describe how you would approach learning and implementing WebRTC in a project?",
+      "answer": "The candidate abruptly ended the conversation with a farewell, indicating they did not provide any response to the question about WebRTC or real-time communication technologies.",
+      "is_followup": false,
+      "score": 0,
+      "feedback": "The candidate did not address the question at all, demonstrating no engagement or willingness to discuss their experience or approach to learning WebRTC.",
+      "timestamp": "2026-07-10T17:03:54.369858"
     },
     {
       "question_number": 7,
-      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
-      "answer": "The candidate briefly mentioned setting up a database for global services but did not address the original question about integrating a third-party AI service with rate limits and latency spikes. They did not discuss reliability, performance, error handling, retries, or fallback mechanisms.",
-      "is_followup": true,
-      "timestamp": "2026-07-10T16:38:09.831187"
+      "question": "How would you design a scalable backend service for a real-time chat application using Python and Node.js? Discuss your choice of architecture, database design, and how you would handle high concurrency and low latency.",
+      "answer": "The candidate abruptly ended the conversation with a farewell and did not provide any response to the question about designing a scalable backend service for a real-time chat application.",
+      "is_followup": false,
+      "score": 0,
+      "feedback": "The candidate did not engage with the question at all, demonstrating no attempt to discuss architecture, database design, or handling concurrency and latency.",
+      "timestamp": "2026-07-10T17:04:06.637835"
+    },
+    {
+      "type": "FINAL_REPORT",
+      "interview_summary": "The candidate struggled significantly throughout the interview, demonstrating limited technical knowledge and poor communication skills. They were unable to provide clear or detailed responses to any of the questions asked, even when given opportunities to elaborate or refocus. The candidate's answers were often vague, off-topic, or entirely absent, indicating a lack of preparation and understanding of core concepts in RESTful APIs, mentoring, infrastructure optimization, real-time communication technologies, and scalable backend design.",
+      "average_score": 1.67,
+      "strengths": [
+        "Basic familiarity with RESTful APIs and POST methods was mentioned, though not explained clearly.",
+        "Willingness to engage with the interview process, despite difficulties in articulating responses."
+      ],
+      "weaknesses": [
+        "Inability to explain technical concepts clearly or in detail.",
+        "Lack of experience or knowledge in critical areas such as API optimization, mentoring, infrastructure scaling, and real-time communication technologies.",
+        "Poor communication skills, including vague and disjointed responses.",
+        "Failure to address key aspects of the questions asked, often deviating from the topic entirely.",
+        "No demonstrated ability to handle situational or technical challenges."
+      ],
+      "timestamp": "2026-07-10T17:04:09.136971"
     }
   ]
 }

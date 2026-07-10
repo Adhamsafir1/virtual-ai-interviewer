@@ -65,40 +65,70 @@ class AgentToolsMixin:
         question: str,
         answer: str,
         is_followup: bool,
+        score: int,
+        feedback: str,
     ) -> str:
-        """Logs a question-answer pair from the interview.
-        Call this EVERY TIME after the candidate finishes answering a question,
-        whether it is a base question or an on-the-spot follow-up question.
+        """Logs a question-answer pair from the interview, evaluating the candidate's response.
+        Call this exactly ONCE after the candidate has provided a complete answer to a question.
 
         Args:
             question: The exact question that was asked.
             answer: A summary of the candidate's response.
             is_followup: True if this was a dynamic follow-up question, False if it was a base question.
+            score: An integer from 0 to 10 evaluating the accuracy, depth, and semantic understanding of the candidate's answer. Evaluate semantically, not just by exact keyword matching.
+            feedback: Constructive feedback or a brief explanation of why the score was given.
         """
         entry = {
             "question_number": len(self.responses_history) + 1,
             "question": question,
             "answer": answer,
             "is_followup": is_followup,
+            "score": score,
+            "feedback": feedback,
             "timestamp": datetime.now().isoformat(),
         }
         self.responses_history.append(entry)
         self._save_responses()
 
         logger.info(
-            "Logged response #%d (followup=%s): %s",
+            "Logged response #%d (Score: %d/10, followup=%s): %s",
             entry["question_number"],
+            score,
             is_followup,
             question[:60],
         )
 
-        return f"Response #{entry['question_number']} logged successfully."
+        return f"Response #{entry['question_number']} logged successfully with score {score}/10."
 
     @function_tool
-    async def end_call(self, context: RunContext) -> str:
+    async def end_call(
+        self,
+        context: RunContext,
+        interview_summary: str,
+        average_score: float,
+        strengths: list[str],
+        weaknesses: list[str],
+    ) -> str:
         """Ends the interview call. Call this exactly when the interview is complete
-        and you have thanked the candidate and given a brief closing summary."""
+        and you have thanked the candidate and given a brief closing summary.
+
+        Args:
+            interview_summary: A comprehensive text summary of the candidate's overall performance.
+            average_score: The calculated average score across all questions.
+            strengths: A list of the candidate's strongest areas demonstrated during the interview.
+            weaknesses: A list of areas where the candidate needs improvement.
+        """
         logger.info("Interview concluded. Disconnecting...")
+
+        # Save final report metrics to the history
+        self.responses_history.append({
+            "type": "FINAL_REPORT",
+            "interview_summary": interview_summary,
+            "average_score": average_score,
+            "strengths": strengths,
+            "weaknesses": weaknesses,
+            "timestamp": datetime.now().isoformat(),
+        })
 
         # Save final responses
         self._save_responses()

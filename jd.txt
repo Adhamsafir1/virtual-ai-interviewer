@@ -1,35 +1,30 @@
-Job Title: Senior Full Stack Developer
+Applied Scientist, Central Seller Fulfillment
+Job ID: 10466440 | Amazon Retail India Private Limited
+Description
+We are seeking a stellar Machine Learning scientist who has experience developing and shipping large scale ML products with visible customer impact. We would prefer if your previous work has been in developing scalable Agentic, RL or forecasting systems. Strong academic background in Statistics, Machine Learning & Deep Learning is required with Tier -1 publications being a plus.
 
-Location: Coimbatore, Tamil Nadu (Hybrid)
-Company: Mazenet Solutions
+• Master’s degree in CS or ML related fields
+• Scientist/Tech Lead creating and shipping impactful ML products.
+• Ability to write clear, structured and modularized code in Python.
+• Expertise in Deep Learning frameworks such as Tensorflow, Keras and Pytorch & Agentic frameworks such as LangChain, Crew AI etc.
+• Industry experience designing complex scalable AI systems.
+• Experience and technical expertise across various science domains. Crucial ones being statistics, deep & machine learning.
+• Experience creating data pipelines & proficient in querying data from Spark/HIVE/Redshift/other large scale data warehousing platforms.
+• Expert in distilling informal customer requirements into problem definitions, dealing with ambiguity and formulating ML products to solve these problems.
 
-About the Role:
-We are looking for a Senior Full Stack Developer to join our engineering team. You will be responsible for building and maintaining scalable web applications, REST APIs, and real-time communication features for our enterprise products.
 
-Key Responsibilities:
-- Design and develop scalable backend services using Python (FastAPI/Django) and Node.js
-- Build responsive, modern frontend interfaces using React.js or Next.js
-- Implement real-time features using WebSockets and WebRTC
-- Design and optimize relational databases (PostgreSQL, MySQL)
-- Write clean, maintainable, and well-tested code
-- Participate in code reviews, architecture discussions, and sprint planning
-- Deploy and manage applications on AWS/GCP cloud infrastructure
-- Integrate third-party APIs and services (payment gateways, AI/ML services)
-- Mentor junior developers and contribute to team knowledge sharing
+Key job responsibilities
+In this position, you will be a key contributor (with direct leadership visibility) building, productionizing (real & batch) and measuring impact of state of the art personalized Gen AI systems for Amazon global selling partners and contribute to Amazon wide research in this area in the form of publications and white papers. You will work with global leaders and teams across time zones on a regular basis.
 
-Required Skills:
-- 3+ years of experience in full stack web development
-- Strong proficiency in Python and JavaScript/TypeScript
-- Experience with React.js and at least one Python web framework (FastAPI preferred)
-- Solid understanding of RESTful API design and microservices architecture
-- Experience with PostgreSQL or MySQL databases
-- Familiarity with Docker, CI/CD pipelines, and cloud deployment (AWS/GCP)
-- Understanding of authentication mechanisms (JWT, OAuth2)
-- Good communication skills and ability to work in a team
+About the team
+Millions of Sellers list their products for sale on the Amazon Marketplace. Sellers are a critical part of Amazon’s ecosystem to deliver on our vision of offering the Earth’s largest selection and lowest prices. In this ecosystem our team plays a critical role in enabling Sellers across EU5, China, Japan, Australia, Brazil and Turkey to make their Selection available to customers globally and deliver the experience they have come to expect from Amazon.
 
-Nice to Have:
-- Experience with WebRTC or real-time streaming technologies
-- Knowledge of AI/ML integration (LLMs, vector databases)
-- Experience with LiveKit, Twilio, or similar real-time communication platforms
-- Familiarity with Redis, message queues (RabbitMQ/Kafka)
-- Open source contributions or technical blog writing
+We help independent sellers compete against our first-party business by investing in and offering them the very best selling tools we could imagine and build. We are pushing the boundaries of these machine learning tools in areas of Agentic, recommendation and forecasting systems to help our sellers sell more and across borders.
+
+Basic Qualifications
+- Experience programming in Java, C++, Python or related language
+- Experience with SQL and an RDBMS (e.g., Oracle) or Data Warehouse
+
+Preferred Qualifications
+- Experience implementing algorithms using both toolkits and self-developed code
+- Have publications at top-tier peer-reviewed conferences or journals

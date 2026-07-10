@@ -2,60 +2,60 @@
   {
     "id": 1,
     "category": "technical",
-    "question": "Can you describe your experience with building scalable backend services using Python and JavaScript/TypeScript? Specifically, discuss a project where you had to optimize performance or handle high traffic. What technologies did you use (e.g., FastAPI, Django, Node.js) and what challenges did you face?",
+    "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
     "expected_key_points": [
-      "Mentions specific backend frameworks (FastAPI/Django/Node.js) and their use cases",
-      "Discusses performance optimization techniques (caching, load balancing, database indexing)",
-      "Provides metrics or outcomes (e.g., reduced latency, handled X requests per second)",
-      "Explains challenges and how they were resolved"
+      "Demonstrates understanding of REST principles and best practices",
+      "Provides concrete examples of API optimization techniques",
+      "Mentions tools/frameworks used (e.g., FastAPI, Django REST, Express)",
+      "Discusses performance metrics or improvements achieved"
     ],
     "difficulty": "medium"
   },
   {
     "id": 2,
     "category": "behavioral",
-    "question": "Tell me about a time when you had to mentor a junior developer or contribute to team knowledge sharing. How did you approach the situation, and what was the outcome?",
+    "question": "Describe a time when you had to mentor a junior developer. What approach did you take to ensure they understood the concepts and could contribute effectively to the team?",
     "expected_key_points": [
-      "Describes the mentoring process (e.g., code reviews, pair programming, documentation)",
-      "Highlights specific improvements in the junior developer's skills or productivity",
-      "Reflects on the impact of the mentorship on the team or project",
-      "Demonstrates leadership or communication skills"
+      "Shows leadership and communication skills",
+      "Provides specific examples of mentoring activities",
+      "Discusses the impact of their mentorship on the junior developer's performance",
+      "Reflects on lessons learned from the experience"
     ],
     "difficulty": "medium"
   },
   {
     "id": 3,
     "category": "situational",
-    "question": "Imagine you are tasked with integrating a third-party AI/ML service into an existing full-stack application. The service has strict latency requirements, and the integration requires handling real-time data. How would you approach this problem, considering both frontend and backend aspects?",
+    "question": "Imagine you're tasked with integrating a third-party AI service into an existing full-stack application. The service has strict latency requirements, and your current infrastructure isn't meeting those needs. How would you approach this problem?",
     "expected_key_points": [
-      "Discusses API integration strategy (REST/WebSockets, authentication, error handling)",
-      "Considers performance optimization (caching, load balancing, edge computing)",
-      "Addresses real-time data handling (WebRTC, WebSockets, or message queues)",
-      "Mentions testing and monitoring for latency and reliability"
+      "Considers infrastructure optimization (caching, CDN, edge computing)",
+      "Discusses load balancing and scaling strategies",
+      "Mentions monitoring and performance testing",
+      "Proposes a phased implementation plan"
     ],
     "difficulty": "hard"
   },
   {
     "id": 4,
     "category": "gap_analysis",
-    "question": "The job description mentions experience with WebRTC or real-time streaming technologies as a 'nice to have'. Your resume highlights AI/ML and backend development but doesn't mention WebRTC or real-time streaming. Can you share any experience you have with real-time communication technologies, or discuss how you would approach learning and implementing them in a project?",
+    "question": "The job requires experience with WebRTC for real-time communication features, but your resume doesn't explicitly mention this technology. Can you share any experience you have with real-time communication technologies or describe how you would approach learning and implementing WebRTC in a project?",
     "expected_key_points": [
-      "Acknowledges the gap and provides relevant context or transferable skills",
-      "Discusses familiarity with real-time concepts (e.g., WebSockets, pub/sub models)",
-      "Outlines a learning plan or past experience with similar technologies",
-      "Shows enthusiasm for expanding skills in this area"
+      "Acknowledges the gap and provides relevant experience or learning plan",
+      "Demonstrates understanding of WebRTC concepts (signaling, peer connections)",
+      "Discusses potential challenges and mitigation strategies",
+      "Shows enthusiasm for learning new technologies"
     ],
     "difficulty": "medium"
   },
   {
     "id": 5,
     "category": "technical",
-    "question": "How would you design a scalable microservices architecture for a real-time chat application that needs to support thousands of concurrent users? Discuss your approach to database design, API design, and deployment strategies.",
+    "question": "How would you design a scalable backend service for a real-time chat application using Python and Node.js? Discuss your choice of architecture, database design, and how you would handle high concurrency and low latency.",
     "expected_key_points": [
-      "Describes microservices decomposition (e.g., user service, chat service, notification service)",
-      "Explains database choices (PostgreSQL for relational data, Redis for caching/sessions)",
-      "Discusses API design (REST/gRPC, WebSocket endpoints for real-time features)",
-      "Covers deployment and scalability (Docker, Kubernetes, load balancing, auto-scaling)"
+      "Proposes a microservices or modular architecture",
+      "Discusses database schema design for chat messages",
+      "Mentions real-time communication protocols (WebSockets, WebRTC)",
+      "Considers horizontal scaling and load balancing strategies"
     ],
     "difficulty": "hard"
   }
