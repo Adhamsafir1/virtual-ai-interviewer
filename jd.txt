@@ -1,0 +1,35 @@
+Job Title: Senior Full Stack Developer
+
+Location: Coimbatore, Tamil Nadu (Hybrid)
+Company: Mazenet Solutions
+
+About the Role:
+We are looking for a Senior Full Stack Developer to join our engineering team. You will be responsible for building and maintaining scalable web applications, REST APIs, and real-time communication features for our enterprise products.
+
+Key Responsibilities:
+- Design and develop scalable backend services using Python (FastAPI/Django) and Node.js
+- Build responsive, modern frontend interfaces using React.js or Next.js
+- Implement real-time features using WebSockets and WebRTC
+- Design and optimize relational databases (PostgreSQL, MySQL)
+- Write clean, maintainable, and well-tested code
+- Participate in code reviews, architecture discussions, and sprint planning
+- Deploy and manage applications on AWS/GCP cloud infrastructure
+- Integrate third-party APIs and services (payment gateways, AI/ML services)
+- Mentor junior developers and contribute to team knowledge sharing
+
+Required Skills:
+- 3+ years of experience in full stack web development
+- Strong proficiency in Python and JavaScript/TypeScript
+- Experience with React.js and at least one Python web framework (FastAPI preferred)
+- Solid understanding of RESTful API design and microservices architecture
+- Experience with PostgreSQL or MySQL databases
+- Familiarity with Docker, CI/CD pipelines, and cloud deployment (AWS/GCP)
+- Understanding of authentication mechanisms (JWT, OAuth2)
+- Good communication skills and ability to work in a team
+
+Nice to Have:
+- Experience with WebRTC or real-time streaming technologies
+- Knowledge of AI/ML integration (LLMs, vector databases)
+- Experience with LiveKit, Twilio, or similar real-time communication platforms
+- Familiarity with Redis, message queues (RabbitMQ/Kafka)
+- Open source contributions or technical blog writing

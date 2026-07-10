@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "category": "technical",
+    "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) and Node.js? Please include details about your approach to handling high traffic, database optimization, and API design.",
+    "expected_key_points": [
+      "Demonstrates experience with FastAPI/Django and Node.js",
+      "Explains scalability considerations (e.g., load balancing, caching, database indexing)",
+      "Describes RESTful API design principles and microservices architecture",
+      "Mentions real-world examples or projects"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "id": 2,
+    "category": "behavioral",
+    "question": "Describe a time when you had to mentor a junior developer. What challenges did you face, and how did you ensure they improved their skills? How did this experience influence your approach to team collaboration?",
+    "expected_key_points": [
+      "Provides a specific example with context and outcomes",
+      "Highlights mentorship strategies (e.g., code reviews, pair programming)",
+      "Reflects on personal growth and impact on the team",
+      "Connects to the JD requirement of mentoring junior developers"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "id": 3,
+    "category": "situational",
+    "question": "You are tasked with integrating a third-party payment gateway into an existing e-commerce platform. The API documentation is unclear, and the gateway’s response times are inconsistent. How would you approach this problem, and what steps would you take to ensure a smooth integration?",
+    "expected_key_points": [
+      "Outlines a systematic debugging and testing approach",
+      "Considers error handling, logging, and fallback mechanisms",
+      "Discusses communication with stakeholders or the third-party provider",
+      "Mentions security considerations (e.g., PCI compliance)"
+    ],
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "category": "gap_analysis",
+    "question": "Your resume highlights experience with AI/ML and LLM pipelines, but the job description emphasizes full-stack development and real-time features. How would you bridge this gap to transition into a full-stack role? What steps would you take to upskill in areas like WebRTC, WebSockets, or cloud deployment?",
+    "expected_key_points": [
+      "Acknowledges the gap and provides a proactive plan",
+      "Mentions specific technologies (e.g., WebRTC, LiveKit) and learning resources",
+      "Connects past AI/ML experience to full-stack development (e.g., APIs, scalability)",
+      "Shows enthusiasm for adapting to the new role"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "id": 5,
+    "category": "technical",
+    "question": "Explain how you would design a real-time feature (e.g., chat or live updates) using WebSockets or WebRTC. Include details about scalability, fault tolerance, and security considerations.",
+    "expected_key_points": [
+      "Describes WebSocket/WebRTC architecture and protocols",
+      "Discusses scalability (e.g., horizontal scaling, connection management)",
+      "Covers fault tolerance (e.g., reconnection logic, heartbeat mechanisms)",
+      "Mentions security (e.g., authentication, encryption)"
+    ],
+    "difficulty": "hard"
+  }
+]
