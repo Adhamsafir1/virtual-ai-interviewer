@@ -1,62 +1,86 @@
 [
   {
     "id": 1,
-    "category": "technical",
-    "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
+    "category": "Technical",
+    "question": "Can you describe a time when you designed and deployed a scalable ML system from scratch? Discuss the architecture, challenges faced, and how you ensured scalability and fault tolerance.",
     "expected_key_points": [
-      "Demonstrates understanding of REST principles and best practices",
-      "Provides concrete examples of API optimization techniques",
-      "Mentions tools/frameworks used (e.g., FastAPI, Django REST, Express)",
-      "Discusses performance metrics or improvements achieved"
+      "Detailed architecture of the ML system (e.g., microservices, batch/real-time pipelines)",
+      "Scalability considerations (e.g., load balancing, distributed training, model serving)",
+      "Fault tolerance mechanisms (e.g., retries, circuit breakers, monitoring)",
+      "Impact metrics (e.g., latency reduction, throughput improvement)"
     ],
-    "difficulty": "medium"
+    "difficulty": "Hard"
   },
   {
     "id": 2,
-    "category": "behavioral",
-    "question": "Describe a time when you had to mentor a junior developer. What approach did you take to ensure they understood the concepts and could contribute effectively to the team?",
+    "category": "Technical",
+    "question": "Explain how you would design a real-time agentic system for automated lead triaging using LangChain or Crew AI. What components would you include, and how would you ensure low latency and high accuracy?",
     "expected_key_points": [
-      "Shows leadership and communication skills",
-      "Provides specific examples of mentoring activities",
-      "Discusses the impact of their mentorship on the junior developer's performance",
-      "Reflects on lessons learned from the experience"
+      "Agentic workflow design (e.g., tool integration, memory, decision-making)",
+      "Real-time processing strategies (e.g., streaming, caching, async I/O)",
+      "Accuracy optimization (e.g., prompt engineering, model ensemble, feedback loops)",
+      "Latency mitigation (e.g., model quantization, edge deployment)"
     ],
-    "difficulty": "medium"
+    "difficulty": "Hard"
   },
   {
     "id": 3,
-    "category": "situational",
-    "question": "Imagine you're tasked with integrating a third-party AI service into an existing full-stack application. The service has strict latency requirements, and your current infrastructure isn't meeting those needs. How would you approach this problem?",
+    "category": "Technical",
+    "question": "How would you implement a forecasting system for seller demand using time-series data? Discuss your approach to feature engineering, model selection, and evaluation.",
     "expected_key_points": [
-      "Considers infrastructure optimization (caching, CDN, edge computing)",
-      "Discusses load balancing and scaling strategies",
-      "Mentions monitoring and performance testing",
-      "Proposes a phased implementation plan"
+      "Feature engineering (e.g., lag features, rolling statistics, external data integration)",
+      "Model selection (e.g., ARIMA, Prophet, LSTM, Transformer-based models)",
+      "Evaluation metrics (e.g., MAE, RMSE, MAPE, business impact)",
+      "Deployment strategy (e.g., batch vs. real-time, A/B testing)"
     ],
-    "difficulty": "hard"
+    "difficulty": "Medium"
   },
   {
     "id": 4,
-    "category": "gap_analysis",
-    "question": "The job requires experience with WebRTC for real-time communication features, but your resume doesn't explicitly mention this technology. Can you share any experience you have with real-time communication technologies or describe how you would approach learning and implementing WebRTC in a project?",
+    "category": "Technical",
+    "question": "Describe your experience with distributed training or inference for ML models. How would you optimize a PyTorch model for multi-GPU training or low-latency inference in production?",
     "expected_key_points": [
-      "Acknowledges the gap and provides relevant experience or learning plan",
-      "Demonstrates understanding of WebRTC concepts (signaling, peer connections)",
-      "Discusses potential challenges and mitigation strategies",
-      "Shows enthusiasm for learning new technologies"
+      "Distributed training frameworks (e.g., PyTorch Distributed, Horovod)",
+      "Optimization techniques (e.g., mixed precision, gradient checkpointing, sharding)",
+      "Inference optimization (e.g., ONNX, TensorRT, model pruning)",
+      "Challenges and trade-offs (e.g., data parallelism vs. model parallelism)"
     ],
-    "difficulty": "medium"
+    "difficulty": "Medium"
   },
   {
     "id": 5,
-    "category": "technical",
-    "question": "How would you design a scalable backend service for a real-time chat application using Python and Node.js? Discuss your choice of architecture, database design, and how you would handle high concurrency and low latency.",
+    "category": "Gap Analysis",
+    "question": "Your resume highlights experience with LangChain and agentic systems, but the JD emphasizes RL and forecasting systems. Can you discuss any experience you have with reinforcement learning, or describe how you would approach designing an RL-based system for seller demand forecasting?",
     "expected_key_points": [
-      "Proposes a microservices or modular architecture",
-      "Discusses database schema design for chat messages",
-      "Mentions real-time communication protocols (WebSockets, WebRTC)",
-      "Considers horizontal scaling and load balancing strategies"
+      "Understanding of RL fundamentals (e.g., Markov Decision Processes, Q-learning, PPO)",
+      "Application to forecasting (e.g., dynamic pricing, inventory optimization)",
+      "Challenges in RL (e.g., exploration vs. exploitation, reward shaping)",
+      "Comparison with traditional forecasting methods"
     ],
-    "difficulty": "hard"
+    "difficulty": "Hard"
+  },
+  {
+    "id": 6,
+    "category": "Behavioral",
+    "question": "Tell me about a time when you had to deal with ambiguous requirements for an ML project. How did you approach the problem, and what steps did you take to distill the requirements into a clear ML problem statement?",
+    "expected_key_points": [
+      "Approach to ambiguity (e.g., stakeholder interviews, prototyping, iterative refinement)",
+      "Problem definition (e.g., framing as classification/regression, defining success metrics)",
+      "Communication strategies (e.g., translating business needs to technical specs)",
+      "Outcome and lessons learned"
+    ],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 7,
+    "category": "Situational",
+    "question": "Imagine you are leading a team to build a new GenAI system for Amazon sellers, but your initial model performs poorly in production due to distribution shift. How would you diagnose the issue, and what steps would you take to improve the system?",
+    "expected_key_points": [
+      "Diagnosis (e.g., data drift analysis, model monitoring, A/B testing)",
+      "Root cause analysis (e.g., feature mismatch, label noise, concept drift)",
+      "Remediation (e.g., retraining, model updates, fallback strategies)",
+      "Preventive measures (e.g., continuous monitoring, CI/CD for models)"
+    ],
+    "difficulty": "Hard"
   }
 ]

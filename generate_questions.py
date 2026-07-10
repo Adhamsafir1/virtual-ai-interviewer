@@ -98,19 +98,20 @@ def discover_file(base_name: str, search_dir: str = ".") -> str | None:
 GENERATION_PROMPT = """\
 You are an expert technical interviewer. You have been given a candidate's resume and a job description (JD).
 
-**Your Task**: Generate exactly 5 structured interview questions that:
+**Your Task**: Generate exactly 7 structured interview questions that:
 1. Test the candidate's skills against the JD requirements.
 2. Include a mix of technical, behavioral, and situational questions.
 3. Probe gaps where the resume does not cover JD requirements.
 
 **For each question, produce a JSON object with these fields:**
-- "id": integer (1-5)
-- "category": one of "technical", "behavioral", "situational", "gap_analysis"
+- "id": integer (1-7)
+- "category": one of "Technical", "Behavioral", "Situational", "Gap Analysis"
 - "question": the full question text
 - "expected_key_points": a list of 2-4 key points you expect in a strong answer
-- "difficulty": one of "easy", "medium", "hard"
+- "difficulty": one of "Easy", "Medium", "Hard"
 
-**Output Format**: Return ONLY a JSON array of 5 question objects. No markdown, no explanation.
+
+**Output Format**: Return ONLY a JSON array of 7 question objects. No markdown, no explanation. 4 Technical Questions ,  1 Technical Gap Analysis , 1 Behavioral and 1 Situational Question
 
 ---
 
