@@ -99,7 +99,7 @@ class Assistant(Agent, AgentToolsMixin):
             len(self.questions),
         )
 
-    async def tts_node(self, text, model_settings):
+    def tts_node(self, text, model_settings):
         """Sanitize text to strip formatting characters before they are spoken."""
         async def clean_text_stream(text_stream):
             async for chunk in text_stream:
@@ -108,7 +108,7 @@ class Assistant(Agent, AgentToolsMixin):
                 yield chunk
         
         cleaned = clean_text_stream(text)
-        return await super().tts_node(cleaned, model_settings)  # type: ignore
+        return super().tts_node(cleaned, model_settings)
 
 
 # ---------------------------------------------------------------------------
@@ -194,7 +194,7 @@ class _FallbackLLMStream(llm.LLMStream):
         try:
             await self._forward(self._primary)
         except Exception as primary_error:
-            logger.warning("Primary LLM failed; falling back to Gemini: %s", primary_error)
+            logger.warning("Primary LLM failed; falling back to next provider: %s", primary_error)
             await self._forward(self._fallback)
 
 
@@ -206,11 +206,15 @@ async def entrypoint(ctx: JobContext):
     llm_model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
     groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
     groq_api_key = os.getenv("GROQ_API_KEY", "")
+    mistral_model = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
+    mistral_api_key = os.getenv("MISTRAL_API_KEY", "")
     stt_model = os.getenv("DEEPGRAM_STT_MODEL", "nova-2")
     tts_model = os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-thalia-en")
     stt_base_url = os.getenv("DEEPGRAM_STT_BASE_URL", "https://api.deepgram.com/v1/listen")
-    primary_llm: llm.LLM
+    
     gemini_llm = google.LLM(model=llm_model)
+    primary_llm = gemini_llm
+    
     if groq_api_key:
         primary_llm = FallbackLLM(
             primary=openai.LLM(
@@ -220,8 +224,16 @@ async def entrypoint(ctx: JobContext):
             ),
             fallback=gemini_llm,
         )
-    else:
-        primary_llm = gemini_llm
+        
+    if mistral_api_key:
+        primary_llm = FallbackLLM(
+            primary=openai.LLM(
+                api_key=mistral_api_key,
+                base_url="https://api.mistral.ai/v1",
+                model=mistral_model,
+            ),
+            fallback=primary_llm,
+        )
 
     session = AgentSession(
         # Current livekit deepgram STT plugin uses v1 listen params; nova-3 is compatible.

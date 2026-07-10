@@ -1,0 +1,55 @@
+{
+  "interview_date": "2026-07-10T16:38:20.766844",
+  "total_base_questions": 5,
+  "responses": [
+    {
+      "question_number": 1,
+      "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) for a real-time AI interaction system? Include details about your choice of framework, database schema design, and how you handled concurrency and scalability challenges.",
+      "answer": "The candidate discussed focusing on architecture for scalability in a backend service. They mentioned Python frameworks like FastAPI or Django and emphasized the need for a scalable application but did not provide specific details about the architecture, framework choice, database schema design, or handling concurrency and scalability challenges.",
+      "is_followup": false,
+      "timestamp": "2026-07-10T16:36:19.655722"
+    },
+    {
+      "question_number": 2,
+      "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) for a real-time AI interaction system? Include details about your choice of framework, database schema design, and how you handled concurrency and scalability challenges.",
+      "answer": "The candidate mentioned preferring updated services but did not elaborate on the architecture, framework choice, database schema design, or handling of concurrency and scalability challenges.",
+      "is_followup": true,
+      "timestamp": "2026-07-10T16:36:26.400317"
+    },
+    {
+      "question_number": 3,
+      "question": "Describe a time when you had to mentor a junior developer on a complex full-stack feature. What challenges did you face, and how did you ensure the junior developer understood both the technical and architectural aspects of the solution?",
+      "answer": "The candidate mentioned mentoring a junior developer but did not provide specific details about the challenges faced, the approach taken, or how they ensured the junior developer understood the technical and architectural aspects of the solution.",
+      "is_followup": true,
+      "timestamp": "2026-07-10T16:37:03.145752"
+    },
+    {
+      "question_number": 4,
+      "question": "Describe a time when you had to mentor a junior developer on a complex full-stack feature. What challenges did you face, and how did you ensure the junior developer understood both the technical and architectural aspects of the solution?",
+      "answer": "The candidate described mentoring a junior developer by providing a complete explanation of the task and addressing any doubts. They emphasized resolving doubts to ensure the junior developer could build everything effectively.",
+      "is_followup": false,
+      "timestamp": "2026-07-10T16:37:21.812369"
+    },
+    {
+      "question_number": 5,
+      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
+      "answer": "The candidate mentioned using load balancing for handling multiple users reaching the server simultaneously but did not elaborate on the full design for integrating a third-party AI service with rate limits and latency spikes. They did not discuss error handling, retries, or fallback mechanisms.",
+      "is_followup": true,
+      "timestamp": "2026-07-10T16:37:58.209626"
+    },
+    {
+      "question_number": 6,
+      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
+      "answer": "The candidate mentioned scaling as a result of handling multiple users but did not provide details on designing the integration for reliability, performance, or graceful degradation. They also did not discuss error handling, retries, or fallback mechanisms.",
+      "is_followup": true,
+      "timestamp": "2026-07-10T16:38:00.648003"
+    },
+    {
+      "question_number": 7,
+      "question": "Imagine you are tasked with integrating a third-party AI service (e.g., an LLM API) into an existing full-stack application. The API has rate limits and occasional latency spikes. How would you design the integration to ensure reliability, performance, and graceful degradation? Include your approach to error handling, retries, and fallback mechanisms.",
+      "answer": "The candidate briefly mentioned setting up a database for global services but did not address the original question about integrating a third-party AI service with rate limits and latency spikes. They did not discuss reliability, performance, error handling, retries, or fallback mechanisms.",
+      "is_followup": true,
+      "timestamp": "2026-07-10T16:38:09.831187"
+    }
+  ]
+}

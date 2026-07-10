@@ -2,60 +2,60 @@
   {
     "id": 1,
     "category": "technical",
-    "question": "Can you walk us through the design and implementation of a scalable backend service using Python (FastAPI/Django) and Node.js? Please include details about your approach to handling high traffic, database optimization, and API design.",
+    "question": "Can you describe your experience with building scalable backend services using Python and JavaScript/TypeScript? Specifically, discuss a project where you had to optimize performance or handle high traffic. What technologies did you use (e.g., FastAPI, Django, Node.js) and what challenges did you face?",
     "expected_key_points": [
-      "Demonstrates experience with FastAPI/Django and Node.js",
-      "Explains scalability considerations (e.g., load balancing, caching, database indexing)",
-      "Describes RESTful API design principles and microservices architecture",
-      "Mentions real-world examples or projects"
+      "Mentions specific backend frameworks (FastAPI/Django/Node.js) and their use cases",
+      "Discusses performance optimization techniques (caching, load balancing, database indexing)",
+      "Provides metrics or outcomes (e.g., reduced latency, handled X requests per second)",
+      "Explains challenges and how they were resolved"
     ],
-    "difficulty": "hard"
+    "difficulty": "medium"
   },
   {
     "id": 2,
     "category": "behavioral",
-    "question": "Describe a time when you had to mentor a junior developer. What challenges did you face, and how did you ensure they improved their skills? How did this experience influence your approach to team collaboration?",
+    "question": "Tell me about a time when you had to mentor a junior developer or contribute to team knowledge sharing. How did you approach the situation, and what was the outcome?",
     "expected_key_points": [
-      "Provides a specific example with context and outcomes",
-      "Highlights mentorship strategies (e.g., code reviews, pair programming)",
-      "Reflects on personal growth and impact on the team",
-      "Connects to the JD requirement of mentoring junior developers"
+      "Describes the mentoring process (e.g., code reviews, pair programming, documentation)",
+      "Highlights specific improvements in the junior developer's skills or productivity",
+      "Reflects on the impact of the mentorship on the team or project",
+      "Demonstrates leadership or communication skills"
     ],
     "difficulty": "medium"
   },
   {
     "id": 3,
     "category": "situational",
-    "question": "You are tasked with integrating a third-party payment gateway into an existing e-commerce platform. The API documentation is unclear, and the gateway’s response times are inconsistent. How would you approach this problem, and what steps would you take to ensure a smooth integration?",
+    "question": "Imagine you are tasked with integrating a third-party AI/ML service into an existing full-stack application. The service has strict latency requirements, and the integration requires handling real-time data. How would you approach this problem, considering both frontend and backend aspects?",
     "expected_key_points": [
-      "Outlines a systematic debugging and testing approach",
-      "Considers error handling, logging, and fallback mechanisms",
-      "Discusses communication with stakeholders or the third-party provider",
-      "Mentions security considerations (e.g., PCI compliance)"
-    ],
-    "difficulty": "medium"
-  },
-  {
-    "id": 4,
-    "category": "gap_analysis",
-    "question": "Your resume highlights experience with AI/ML and LLM pipelines, but the job description emphasizes full-stack development and real-time features. How would you bridge this gap to transition into a full-stack role? What steps would you take to upskill in areas like WebRTC, WebSockets, or cloud deployment?",
-    "expected_key_points": [
-      "Acknowledges the gap and provides a proactive plan",
-      "Mentions specific technologies (e.g., WebRTC, LiveKit) and learning resources",
-      "Connects past AI/ML experience to full-stack development (e.g., APIs, scalability)",
-      "Shows enthusiasm for adapting to the new role"
+      "Discusses API integration strategy (REST/WebSockets, authentication, error handling)",
+      "Considers performance optimization (caching, load balancing, edge computing)",
+      "Addresses real-time data handling (WebRTC, WebSockets, or message queues)",
+      "Mentions testing and monitoring for latency and reliability"
     ],
     "difficulty": "hard"
   },
   {
+    "id": 4,
+    "category": "gap_analysis",
+    "question": "The job description mentions experience with WebRTC or real-time streaming technologies as a 'nice to have'. Your resume highlights AI/ML and backend development but doesn't mention WebRTC or real-time streaming. Can you share any experience you have with real-time communication technologies, or discuss how you would approach learning and implementing them in a project?",
+    "expected_key_points": [
+      "Acknowledges the gap and provides relevant context or transferable skills",
+      "Discusses familiarity with real-time concepts (e.g., WebSockets, pub/sub models)",
+      "Outlines a learning plan or past experience with similar technologies",
+      "Shows enthusiasm for expanding skills in this area"
+    ],
+    "difficulty": "medium"
+  },
+  {
     "id": 5,
     "category": "technical",
-    "question": "Explain how you would design a real-time feature (e.g., chat or live updates) using WebSockets or WebRTC. Include details about scalability, fault tolerance, and security considerations.",
+    "question": "How would you design a scalable microservices architecture for a real-time chat application that needs to support thousands of concurrent users? Discuss your approach to database design, API design, and deployment strategies.",
     "expected_key_points": [
-      "Describes WebSocket/WebRTC architecture and protocols",
-      "Discusses scalability (e.g., horizontal scaling, connection management)",
-      "Covers fault tolerance (e.g., reconnection logic, heartbeat mechanisms)",
-      "Mentions security (e.g., authentication, encryption)"
+      "Describes microservices decomposition (e.g., user service, chat service, notification service)",
+      "Explains database choices (PostgreSQL for relational data, Redis for caching/sessions)",
+      "Discusses API design (REST/gRPC, WebSocket endpoints for real-time features)",
+      "Covers deployment and scalability (Docker, Kubernetes, load balancing, auto-scaling)"
     ],
     "difficulty": "hard"
   }
