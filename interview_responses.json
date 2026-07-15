@@ -1,25 +1,16 @@
 {
-  "interview_date": "2026-07-15T12:04:48.930992",
+  "interview_date": "2026-07-15T15:04:06.900359",
   "total_base_questions": 9,
   "status": "in_progress",
   "responses": [
     {
       "question_number": 1,
-      "question": "Could you tell me a little about yourself and the kind of work you've been doing recently?",
-      "answer": "Krishna is a DevOps engineer with four years of experience, previously a software engineer.",
+      "question": "You mentioned in your resume that you reduced setup time by 60% for a multi-tier web app using Terraform. Can you walk me through the project, your specific contributions, and the key decisions you made during the design and implementation phases?",
+      "answer": "Adam is currently working as an engineer and graduated from Telegram Civilizations.",
       "is_followup": false,
-      "score": 7,
-      "feedback": "Good overview of experience and interests, but could use more detail.",
-      "timestamp": "2026-07-15T12:03:18.622232"
-    },
-    {
-      "question_number": 2,
-      "question": "You mentioned deploying a multi-tier web app using Terraform in your Infrastructure as Code project. Can you walk me through your role in designing that architecture? Specifically, how did you structure the Terraform modules, handle state management, and ensure the infrastructure was production-ready?",
-      "answer": "Krishna uses AWS and Terraform for deploying services, ensuring configurations are verified with teams.",
-      "is_followup": false,
-      "score": 6,
-      "feedback": "Good explanation of process, but lacks detail on module structure and state management.",
-      "timestamp": "2026-07-15T12:04:48.930992"
+      "score": 0,
+      "feedback": "Intro lacks detail about current role and experience.",
+      "timestamp": "2026-07-15T15:04:06.900359"
     }
   ]
 }

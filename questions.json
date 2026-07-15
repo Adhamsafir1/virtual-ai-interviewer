@@ -2,109 +2,109 @@
   {
     "id": 1,
     "category": "Project",
-    "question": "You mentioned deploying a multi-tier web app using Terraform in your Infrastructure as Code project. Can you walk me through your role in designing that architecture? Specifically, how did you structure the Terraform modules, handle state management, and ensure the infrastructure was production-ready?",
+    "question": "You mentioned in your resume that you reduced setup time by 60% for a multi-tier web app using Terraform. Can you walk me through the project, your specific contributions, and the key decisions you made during the design and implementation phases?",
     "expected_key_points": [
-      "Terraform module structure and reusability",
-      "State management strategy (e.g., remote backend, workspaces)",
-      "Production considerations (e.g., networking, security, scalability)",
-      "Outcome or impact of the deployment"
+      "Details of the multi-tier web app architecture (EC2, RDS, ALB, etc.)",
+      "How Terraform was structured for reusability and scalability",
+      "Trade-offs considered (e.g., state management, module design, or performance vs. cost)",
+      "Quantifiable outcomes beyond the 60% time reduction"
     ],
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": 2,
     "category": "Experience",
-    "question": "At RND Softek, you built CI/CD pipelines for Docker-based microservices using Jenkins and GitHub Actions. Can you describe a time when you had to optimize or troubleshoot one of these pipelines? What was the challenge, and how did you resolve it?",
+    "question": "At RND Softek, you built CI/CD pipelines for Docker-based microservices using Jenkins and GitHub Actions. Can you describe a time when you had to debug or optimize one of these pipelines? What challenges did you face, and how did you resolve them?",
     "expected_key_points": [
-      "Specific pipeline challenge (e.g., performance, reliability, security)",
-      "Steps taken to diagnose and resolve the issue",
-      "Collaboration with other teams (if applicable)",
-      "Outcome or improvement achieved"
+      "Specific pipeline (Jenkins/GitHub Actions) and the microservice involved",
+      "Debugging process (logs, errors, or bottlenecks identified)",
+      "Optimization decisions (e.g., parallel stages, caching, or artifact management)",
+      "Impact on deployment frequency or reliability"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 3,
     "category": "Skill",
-    "question": "You list Terraform as a core skill. Can you explain how you’ve used Terraform to manage drift detection in a multi-environment AWS deployment? What tools or strategies did you employ to ensure infrastructure consistency?",
+    "question": "Your resume highlights expertise in Terraform for AWS infrastructure. Can you explain how you’ve structured Terraform modules for large-scale deployments, particularly around state management and drift detection?",
     "expected_key_points": [
-      "Terraform drift detection methods (e.g., `terraform plan`, custom scripts)",
-      "Integration with CI/CD for automated drift checks",
-      "Handling drift resolution (e.g., automated apply, manual intervention)",
-      "Example or scenario from past experience"
+      "Module design principles (e.g., reusable vs. environment-specific modules)",
+      "State management strategy (remote backends, locking, or workspaces)",
+      "Approach to detecting and resolving configuration drift",
+      "Integration with CI/CD for plan/apply workflows"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 4,
     "category": "Certification",
-    "question": "You’ve earned the AWS Certified Badges and completed the Kubernetes for Beginners course. How have these certifications influenced your approach to designing AWS Landing Zones or EKS clusters? Can you share a specific example where this knowledge was applied?",
+    "question": "You’ve completed the ‘Kubernetes for Beginners’ certification from KubeAcademy. Can you describe a practical scenario where you applied Kubernetes (even at a basic level) in your work, and how it addressed a specific challenge?",
     "expected_key_points": [
-      "Relevant AWS certification topics (e.g., IAM, networking, security)",
-      "Kubernetes basics applied to EKS or container orchestration",
-      "Impact on design decisions or troubleshooting",
-      "Outcome or lesson learned"
+      "Context of the Kubernetes usage (e.g., deployment, scaling, or monitoring)",
+      "How Docker Swarm or Kubernetes simplified or complicated the solution",
+      "Outcomes (e.g., reduced downtime, improved scalability, or easier management)",
+      "Lessons learned from the experience"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 5,
     "category": "JD Alignment",
-    "question": "The JD emphasizes designing Terraform module architectures for enterprise-scale AWS environments. In your Infrastructure as Code project, you deployed a multi-tier web app using Terraform. How would you adapt that experience to design reusable Terraform modules for a Landing Zone with multi-account strategies and governance frameworks?",
+    "question": "The JD emphasizes designing AWS Landing Zones with Control Tower and multi-account strategies. You’ve worked with AWS services like IAM, VPC, and RDS, but not explicitly Control Tower. Can you discuss how your experience with Terraform and AWS governance (e.g., IAM policies, SCPs, or tagging) translates to building a Landing Zone?",
     "expected_key_points": [
-      "Reusability and modularity in Terraform design",
-      "Multi-account strategy (e.g., AWS Control Tower, AFT)",
-      "Governance frameworks (e.g., SCPs, IAM policies)",
-      "Scalability and maintainability considerations"
+      "How Terraform modules could enforce governance (e.g., SCPs, IAM roles)",
+      "Experience with multi-account strategies (even if not Control Tower)",
+      "Security and compliance practices applied in past projects",
+      "Scalability considerations for enterprise environments"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 6,
     "category": "Gap Analysis",
-    "question": "The role requires hands-on experience with AWS Landing Zones, including Control Tower and multi-account strategies. Your resume highlights AWS services like EC2, S3, and IAM, but doesn’t explicitly mention Control Tower or Landing Zone deployments. Can you describe a time when you designed or implemented a multi-account AWS strategy, even if it wasn’t called a ‘Landing Zone’? What were the key challenges and outcomes?",
+    "question": "The role requires hands-on experience with EKS and GitOps patterns (e.g., ArgoCD). Your resume mentions basic Kubernetes and Docker Swarm. Can you describe how you’ve approached container orchestration in the past, and what steps you’d take to deepen your EKS expertise?",
     "expected_key_points": [
-      "Multi-account strategy (e.g., hub-spoke, OUs, SCPs)",
-      "Tools or methods used (e.g., Terraform, AWS Organizations)",
-      "Challenges (e.g., networking, security, governance)",
-      "Outcome or impact of the implementation"
+      "Past container orchestration experience (Docker Swarm, Kubernetes basics)",
+      "Understanding of EKS vs. self-managed Kubernetes",
+      "Learning or upskilling approach (e.g., labs, certifications, or side projects)",
+      "How you’d apply this in the role (e.g., migrating from Swarm to EKS)"
     ],
-    "difficulty": "Hard"
+    "difficulty": "Medium"
   },
   {
     "id": 7,
     "category": "Situational",
-    "question": "Imagine you’re consulting with a large enterprise customer who needs to modernize their applications and migrate to AWS. They have a mix of legacy monoliths and microservices, and their current CI/CD pipelines are manual and error-prone. How would you approach designing a Landing Zone and CI/CD strategy for them? What are the first steps you’d take, and how would you prioritize the work?",
+    "question": "Imagine you’re designing a Landing Zone for a customer with strict compliance requirements (e.g., financial services). They need a multi-account strategy, automated governance via SCPs, and CI/CD-driven policy enforcement. Walk me through how you’d approach this, including the tools and workflows you’d prioritize.",
     "expected_key_points": [
-      "Assessment of current state (e.g., infrastructure, pipelines, security)",
-      "Landing Zone design (e.g., multi-account, networking, governance)",
-      "CI/CD modernization (e.g., automation, testing, deployment strategies)",
-      "Prioritization and phased approach"
+      "Account structure strategy (e.g., hub-spoke, OUs, or service-specific accounts)",
+      "Governance tools (Terraform for SCPs, AWS Organizations, or third-party tools)",
+      "CI/CD integration for policy-as-code (e.g., plan/apply workflows with approvals)",
+      "Trade-offs between flexibility, security, and operational overhead"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 8,
     "category": "Leadership",
-    "question": "The role involves leading platform engineering efforts and guiding delivery teams through complex technical decisions. Can you share an example where you took ownership of a technical decision that had significant impact on a project? How did you collaborate with other teams to ensure the decision was well-received and successfully implemented?",
+    "question": "The role involves leading platform engineering efforts and mentoring delivery teams. Can you share an example where you took ownership of a technical decision that significantly impacted a team’s workflow or project outcome? How did you collaborate with others to ensure success?",
     "expected_key_points": [
-      "Specific technical decision and context",
-      "Collaboration with stakeholders (e.g., developers, architects, executives)",
-      "How ownership was demonstrated (e.g., research, prototyping, documentation)",
-      "Outcome or impact of the decision"
+      "Context of the decision (e.g., tool selection, architecture change, or process improvement)",
+      "How you gathered input from stakeholders (e.g., developers, QA, or security)",
+      "Implementation and rollout strategy (e.g., training, documentation, or phased adoption)",
+      "Outcome and lessons learned"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 9,
     "category": "Behavioral",
-    "question": "Tell me about a time when you had to work in an ambiguous or fast-moving environment. How did you prioritize your tasks, and what steps did you take to ensure the project stayed on track? Can you share a specific example from your experience at Mazenet Solution or RND Softek?",
+    "question": "Tell me about a time when you had to work in an ambiguous or fast-moving environment. How did you prioritize tasks, make technical decisions, and ensure alignment with business goals?",
     "expected_key_points": [
-      "Context of ambiguity or fast-moving environment",
-      "Approach to prioritization (e.g., stakeholder alignment, risk assessment)",
-      "Steps taken to mitigate risks or clarify requirements",
-      "Outcome or lesson learned"
+      "Specific scenario (e.g., migration, incident, or urgent feature request)",
+      "How you navigated uncertainty (e.g., research, prototyping, or stakeholder alignment)",
+      "Technical decisions made under pressure (e.g., trade-offs, risk mitigation)",
+      "Impact on the project or team (e.g., time saved, risks avoided, or customer satisfaction)"
     ],
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   }
 ]

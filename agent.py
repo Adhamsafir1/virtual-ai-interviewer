@@ -3,6 +3,7 @@ import json
 import os
 import uuid
 import warnings
+from datetime import datetime
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -10,6 +11,9 @@ from dotenv import load_dotenv
 from livekit.agents import (
     Agent,
     AgentSession,
+    AudioConfig,
+    BackgroundAudioPlayer,
+    BuiltinAudioClip,
     JobContext,
     RoomInputOptions,
     WorkerOptions,
@@ -83,20 +87,36 @@ def load_questions() -> list[dict]:
 
 class Assistant(Agent, AgentToolsMixin):
     def __init__(self, room) -> None:
+        self.questions = load_questions()
+        formatted_questions = "\n".join(f"Question #{i+1}: {q}" for i, q in enumerate(self.questions))
+        full_instructions = f"""{SYSTEM_PROMPT}
+
+PREPARED INTERVIEW QUESTIONS (ASK THESE EXACT 9 QUESTIONS IN ORDER):
+{formatted_questions}
+
+STEPS FOR THE INTERVIEW:
+- Welcome message has been spoken.
+- Candidate is currently answering the intro/welcome.
+- After Candidate responds to intro, ask Question #1 from the list above.
+- Proceed sequentially through Question #1 to Question #9.
+- After Candidate responds to Question #9, thank the candidate and call `end_call`.
+- DO NOT invent generic questions. You MUST ask the exact prepared questions above in order.
+"""
         super().__init__(
-            instructions=SYSTEM_PROMPT,
+            instructions=full_instructions,
         )
         self.room = room
 
         # Interview state
-        self.questions = load_questions()
         self.current_question_index = 0
         self.responses_history = []
+        self.last_asked_question = WELCOME_MESSAGE
 
         logger.info(
             "Interview Agent initialized with %d base questions.",
             len(self.questions),
         )
+
 
     def tts_node(self, text, model_settings):
         """Sanitize text to strip formatting characters before they are spoken."""
@@ -115,18 +135,17 @@ class Assistant(Agent, AgentToolsMixin):
 # ---------------------------------------------------------------------------
 
 class FallbackLLM(llm.LLM):
-    def __init__(self, *, primary: llm.LLM, fallback: llm.LLM) -> None:
+    def __init__(self, providers: list[llm.LLM]) -> None:
         super().__init__()
-        self._primary = primary
-        self._fallback = fallback
+        self._providers = providers
 
     @property
     def model(self) -> str:
-        return self._primary.model
+        return self._providers[0].model if self._providers else ""
 
     @property
     def provider(self) -> str:
-        return self._primary.provider
+        return self._providers[0].provider if self._providers else ""
 
     def chat(
         self,
@@ -140,8 +159,7 @@ class FallbackLLM(llm.LLM):
     ) -> llm.LLMStream:
         return _FallbackLLMStream(
             self,
-            primary=self._primary,
-            fallback=self._fallback,
+            providers=self._providers,
             chat_ctx=chat_ctx,
             tools=tools or [],
             conn_options=conn_options,
@@ -151,8 +169,8 @@ class FallbackLLM(llm.LLM):
         )
 
     async def aclose(self) -> None:
-        await self._primary.aclose()
-        await self._fallback.aclose()
+        for p in self._providers:
+            await p.aclose()
 
 
 class _FallbackLLMStream(llm.LLMStream):
@@ -160,8 +178,7 @@ class _FallbackLLMStream(llm.LLMStream):
         self,
         llm_parent: FallbackLLM,
         *,
-        primary: llm.LLM,
-        fallback: llm.LLM,
+        providers: list[llm.LLM],
         chat_ctx: llm.ChatContext,
         tools: list[llm.Tool],
         conn_options: APIConnectOptions,
@@ -170,8 +187,7 @@ class _FallbackLLMStream(llm.LLMStream):
         extra_kwargs=NOT_GIVEN,
     ) -> None:
         super().__init__(llm_parent, chat_ctx=chat_ctx, tools=tools, conn_options=conn_options)
-        self._primary = primary
-        self._fallback = fallback
+        self._providers = providers
         self._parallel_tool_calls = parallel_tool_calls
         self._tool_choice = tool_choice
         self._extra_kwargs = extra_kwargs
@@ -190,11 +206,13 @@ class _FallbackLLMStream(llm.LLMStream):
                 self._event_ch.send_nowait(chunk)
 
     async def _run(self) -> None:
-        try:
-            await self._forward(self._primary)
-        except Exception as primary_error:
-            logger.warning("Primary LLM failed; falling back to next provider: %s", primary_error)
-            await self._forward(self._fallback)
+        for i, provider in enumerate(self._providers):
+            try:
+                await self._forward(provider)
+                return
+            except Exception as provider_error:
+                logger.warning("LLM provider #%d (%s) failed: %s. Trying fallback...", i + 1, provider, provider_error)
+        logger.error("All configured LLM fallback providers failed.")
 
 
 # ---------------------------------------------------------------------------
@@ -206,22 +224,44 @@ async def entrypoint(ctx: JobContext):
     openai_llm_model = os.getenv("OPENAI_LLM_MODEL", "gpt-4o-mini")
     mistral_model = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
     mistral_api_key = os.getenv("MISTRAL_API_KEY", "")
+    groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
+    groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant").strip()
 
-    if not openai_api_key:
-        raise RuntimeError("OPENAI_API_KEY is required for the primary OpenAI mini interview model.")
+    providers: list[llm.LLM] = []
 
-    primary_llm: llm.LLM = openai.LLM(model=openai_llm_model, api_key=openai_api_key, temperature=0.3)
+    # 1. Primary: OpenAI
+    if openai_api_key:
+        logger.info("Configured Primary LLM: OpenAI (%s)", openai_llm_model)
+        providers.append(openai.LLM(model=openai_llm_model, api_key=openai_api_key, temperature=0.2))
+
+    # 2. Fallback 1: Mistral
     if mistral_api_key:
-        primary_llm = FallbackLLM(
-            primary=primary_llm,
-            fallback=openai.LLM(
+        logger.info("Configured Fallback #1 LLM: Mistral (%s)", mistral_model)
+        providers.append(
+            openai.LLM(
                 api_key=mistral_api_key,
                 base_url="https://api.mistral.ai/v1",
                 model=mistral_model,
-            ),
+                temperature=0.2,
+            )
         )
-    else:
-        logger.warning("MISTRAL_API_KEY is not set; OpenAI has no configured LLM fallback.")
+
+    # 3. Fallback 2: Groq
+    if groq_api_key:
+        logger.info("Configured Fallback #2 LLM: Groq (%s)", groq_model)
+        providers.append(
+            openai.LLM(
+                api_key=groq_api_key,
+                base_url="https://api.groq.com/openai/v1",
+                model=groq_model,
+                temperature=0.2,
+            )
+        )
+
+    if not providers:
+        raise RuntimeError("No valid LLM providers configured.")
+
+    primary_llm = providers[0] if len(providers) == 1 else FallbackLLM(providers=providers)
 
     deepgram_stt_model = os.getenv("DEEPGRAM_STT_MODEL", "flux-general-en").strip()
     if deepgram_stt_model != "flux-general-en":
@@ -230,35 +270,35 @@ async def entrypoint(ctx: JobContext):
             f"Received: {deepgram_stt_model!r}."
         )
 
-    # Flux provides conversational English transcription and native end-of-turn detection.
+    # Flux provides conversational English transcription. We use Silero for fast VAD.
     stt_plugin = deepgram.STTv2(
         model=deepgram_stt_model,
     )
-    # Deepgram TTS streams audio as the response is generated. This avoids waiting for
-    # OpenAI's non-streaming TTS request to finish before the candidate hears a reply.
+    # Deepgram TTS streams audio as the response is generated.
     tts_plugin = deepgram.TTS(
         model=os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-hermes-en").strip(),
     )
 
+    vad = silero.VAD.load()
+
     session = AgentSession(
         stt=stt_plugin,
+        vad=vad,
         llm=primary_llm,
         tts=tts_plugin,
-        vad=silero.VAD.load(),
         turn_handling=TurnHandlingOptions(
-            turn_detection="stt",
-            interruption={
-                "mode": "vad",
-            },
+            turn_detection="vad",
             endpointing={
-                "min_delay": float(os.getenv("EOU_MIN_DELAY_SEC", "0.15")),
-                "max_delay": float(os.getenv("EOU_MAX_DELAY_SEC", "0.5")),
+                "min_delay": 0.1,
+                "max_delay": 0.25,
             },
+            preemptive_generation={"enabled": True},  # Starts LLM early to hide TTFT delay
+            aec_warmup_duration=1.0,               # default 3.0s — blocks interruptions after agent speaks
+            false_interruption_timeout=None,       # default 2.0s — hidden delay on "false" interruptions
+            min_interruption_duration=0.3,         # react to shorter interruptions faster
         ),
-        # Fail a slow provider quickly. FallbackLLM then retries the turn with Mistral
-        # instead of making the candidate wait through several ten-second retries.
         conn_options=SessionConnectOptions(
-            llm_conn_options=APIConnectOptions(max_retry=1, timeout=12.0),
+            llm_conn_options=APIConnectOptions(max_retry=1, timeout=4.0),
         ),
     )
     usage_collector = metrics.UsageCollector()
@@ -277,7 +317,10 @@ async def entrypoint(ctx: JobContext):
     async def log_usage():
         summary = usage_collector.get_summary()
         logger.info("Usage summary: %s", summary)
-
+        try:
+            await background_audio.aclose()
+        except Exception:
+            pass
 
     ctx.add_shutdown_callback(log_usage)
 
@@ -335,7 +378,9 @@ async def entrypoint(ctx: JobContext):
     def _on_user_input_transcribed(ev):
         _cancel_silence_timer()
         if ev.is_final and ev.transcript.strip():
-            print(f"\n\033[92m[CANDIDATE] >>> {ev.transcript.strip()}\033[0m\n", flush=True)
+            transcript = ev.transcript.strip()
+            print(f"\n\033[92m[CANDIDATE] >>> {transcript}\033[0m\n", flush=True)
+            agent.responses_history.append({"speaker": "candidate", "text": transcript})
 
     @session.on("conversation_item_added")
     def _on_conversation_item_added(ev):
@@ -344,7 +389,20 @@ async def entrypoint(ctx: JobContext):
             if hasattr(msg, "text_content"):
                 text = msg.text_content
                 if text and text.strip():
-                    print(f"\n\033[94m[INTERVIEWER] <<< {text.strip()}\033[0m\n", flush=True)
+                    clean_text = text.strip()
+                    agent.last_asked_question = clean_text
+                    print(f"\n\033[94m[INTERVIEWER] <<< {clean_text}\033[0m\n", flush=True)
+                    # Deduplicate in case LiveKit fires it multiple times or we already logged it
+                    if not agent.responses_history or agent.responses_history[-1].get("text") != clean_text:
+                        agent.responses_history.append({"speaker": "interviewer", "text": clean_text})
+
+    background_audio = BackgroundAudioPlayer(
+        ambient_sound=AudioConfig(BuiltinAudioClip.OFFICE_AMBIENCE, volume=0.8),
+        thinking_sound=[
+            AudioConfig(BuiltinAudioClip.KEYBOARD_TYPING, volume=0.8),
+            AudioConfig(BuiltinAudioClip.KEYBOARD_TYPING2, volume=0.7),
+        ],
+    )
 
     agent = Assistant(room=ctx.room)
 
@@ -357,6 +415,7 @@ async def entrypoint(ctx: JobContext):
     )
 
     await ctx.connect()
+    await background_audio.start(room=ctx.room, agent_session=session)
 
     # Speak the welcome/first message immediately after connection
     session.say(WELCOME_MESSAGE, allow_interruptions=True)
