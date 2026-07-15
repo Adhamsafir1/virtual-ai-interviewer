@@ -102,22 +102,32 @@ def discover_file(base_name: str, search_dir: str = ".") -> str | None:
 # ---------------------------------------------------------------------------
 
 GENERATION_PROMPT = """\
-You are an expert technical interviewer. You have been given a candidate's resume and a job description (JD).
+You are an expert interviewer. You have a candidate resume and a job description (JD). Generate exactly 9 ordered, structured questions for a natural internal interview.
 
-**Your Task**: Generate exactly 7 structured interview questions that:
-1. Test the candidate's skills against the JD requirements.
-2. Include a mix of technical, behavioral, and situational questions.
-3. Probe gaps where the resume does not cover JD requirements.
+Question order and purpose:
+1. A resume-based project question, focused on the candidate's contribution and decisions.
+2. A question from a relevant previous-company experience.
+3. A question about a stated technical skill.
+4. A question about a relevant certification, only if one exists; otherwise another specific project or skill question.
+5. A JD-alignment technical question that connects a key JD requirement to the resume.
+6. A technical gap-analysis question for an important JD requirement not clearly evidenced by the resume.
+7. A situational question grounded in the role and JD.
+8. A leadership-principle question about ownership, collaboration, judgment, or customer impact relevant to the role.
+9. A behavioral question that asks for a concrete past example.
 
-**For each question, produce a JSON object with these fields:**
-- "id": integer (1-7)
-- "category": one of "Technical", "Behavioral", "Situational", "Gap Analysis"
-- "question": the full question text
-- "expected_key_points": a list of 2-4 key points you expect in a strong answer
+Requirements:
+- Base every question on resume or JD evidence; avoid generic trivia and duplicate topics.
+- Phrase questions conversationally. Ask for the candidate's role, decisions, trade-offs, and outcomes where relevant.
+- Do not mention that a skill is missing or call out a gap to the candidate.
+
+For each question, return a JSON object with:
+- "id": integer from 1 to 9
+- "category": one of "Project", "Experience", "Skill", "Certification", "JD Alignment", "Gap Analysis", "Situational", "Leadership", "Behavioral"
+- "question": full question text
+- "expected_key_points": list of two to four expected points
 - "difficulty": one of "Easy", "Medium", "Hard"
 
-
-**Output Format**: Return ONLY a JSON array of 7 question objects. No markdown, no explanation. 4 Technical Questions ,  1 Technical Gap Analysis , 1 Behavioral and 1 Situational Question
+Output only a JSON array of 9 objects. No markdown or explanation.
 
 ---
 

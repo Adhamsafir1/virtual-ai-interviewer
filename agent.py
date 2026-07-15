@@ -6,7 +6,6 @@ import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-import aiohttp
 from dotenv import load_dotenv
 from livekit.agents import (
     Agent,
@@ -18,11 +17,11 @@ from livekit.agents import (
     RunContext,
     TurnHandlingOptions,
 )
-from livekit.agents.llm import function_tool
-from livekit.plugins import noise_cancellation, silero, deepgram, google, openai
-from livekit.agents import llm, tts, stt
+from livekit.plugins import noise_cancellation, silero, deepgram, openai
+from livekit.agents import llm
 from livekit.agents import AgentStateChangedEvent, MetricsCollectedEvent, metrics
 from livekit.agents.types import APIConnectOptions, DEFAULT_API_CONNECT_OPTIONS, NOT_GIVEN
+from livekit.agents.voice.agent_session import SessionConnectOptions
 
 
 logger = logging.getLogger("agent")
@@ -203,57 +202,64 @@ class _FallbackLLMStream(llm.LLMStream):
 # ---------------------------------------------------------------------------
 
 async def entrypoint(ctx: JobContext):
-    llm_model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
-    groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
-    groq_api_key = os.getenv("GROQ_API_KEY", "")
+    openai_api_key = os.getenv("OPENAI_API_KEY", "")
+    openai_llm_model = os.getenv("OPENAI_LLM_MODEL", "gpt-4o-mini")
     mistral_model = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
     mistral_api_key = os.getenv("MISTRAL_API_KEY", "")
-    stt_model = os.getenv("DEEPGRAM_STT_MODEL", "nova-2")
-    tts_model = os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-thalia-en")
-    stt_base_url = os.getenv("DEEPGRAM_STT_BASE_URL", "https://api.deepgram.com/v1/listen")
-    
-    gemini_llm = google.LLM(model=llm_model)
-    primary_llm = gemini_llm
-    
-    if groq_api_key:
-        primary_llm = FallbackLLM(
-            primary=openai.LLM(
-                api_key=groq_api_key,
-                base_url="https://api.groq.com/openai/v1",
-                model=groq_model,
-            ),
-            fallback=gemini_llm,
-        )
-        
+
+    if not openai_api_key:
+        raise RuntimeError("OPENAI_API_KEY is required for the primary OpenAI mini interview model.")
+
+    primary_llm: llm.LLM = openai.LLM(model=openai_llm_model, api_key=openai_api_key, temperature=0.3)
     if mistral_api_key:
         primary_llm = FallbackLLM(
-            primary=openai.LLM(
+            primary=primary_llm,
+            fallback=openai.LLM(
                 api_key=mistral_api_key,
                 base_url="https://api.mistral.ai/v1",
                 model=mistral_model,
             ),
-            fallback=primary_llm,
+        )
+    else:
+        logger.warning("MISTRAL_API_KEY is not set; OpenAI has no configured LLM fallback.")
+
+    deepgram_stt_model = os.getenv("DEEPGRAM_STT_MODEL", "flux-general-en").strip()
+    if deepgram_stt_model != "flux-general-en":
+        raise RuntimeError(
+            "DEEPGRAM_STT_MODEL must be 'flux-general-en' when using Deepgram STTv2. "
+            f"Received: {deepgram_stt_model!r}."
         )
 
+    # Flux provides conversational English transcription and native end-of-turn detection.
+    stt_plugin = deepgram.STTv2(
+        model=deepgram_stt_model,
+    )
+    # Deepgram TTS streams audio as the response is generated. This avoids waiting for
+    # OpenAI's non-streaming TTS request to finish before the candidate hears a reply.
+    tts_plugin = deepgram.TTS(
+        model=os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-hermes-en").strip(),
+    )
+
     session = AgentSession(
-        # Current livekit deepgram STT plugin uses v1 listen params; nova-3 is compatible.
-        stt=deepgram.STT(model=stt_model, language="en", base_url=stt_base_url),
+        stt=stt_plugin,
         llm=primary_llm,
-        # English voice output via Deepgram Aura.
-        tts=deepgram.TTS(model=tts_model),
+        tts=tts_plugin,
         vad=silero.VAD.load(),
         turn_handling=TurnHandlingOptions(
-            turn_detection="vad",
+            turn_detection="stt",
             interruption={
                 "mode": "vad",
             },
             endpointing={
                 "min_delay": float(os.getenv("EOU_MIN_DELAY_SEC", "0.15")),
-                "max_delay": float(os.getenv("EOU_MAX_DELAY_SEC", "0.6")),
+                "max_delay": float(os.getenv("EOU_MAX_DELAY_SEC", "0.5")),
             },
         ),
-        # Favor latency over token efficiency for a more conversational feel.
-        preemptive_generation=True,
+        # Fail a slow provider quickly. FallbackLLM then retries the turn with Mistral
+        # instead of making the candidate wait through several ten-second retries.
+        conn_options=SessionConnectOptions(
+            llm_conn_options=APIConnectOptions(max_retry=1, timeout=12.0),
+        ),
     )
     usage_collector = metrics.UsageCollector()
     last_eou_metrics: metrics.EOUMetrics | None = None
@@ -275,8 +281,42 @@ async def entrypoint(ctx: JobContext):
 
     ctx.add_shutdown_callback(log_usage)
 
+    import asyncio
+    silence_task = None
+    is_listening = False
+
+    def _reset_silence_timer():
+        nonlocal silence_task
+        if silence_task:
+            silence_task.cancel()
+        
+        async def _silence_prompt():
+            try:
+                await asyncio.sleep(12)
+                if is_listening:
+                    session.say("I'm still here. Take your time, or let me know if you'd like me to repeat the question.", allow_interruptions=True)
+            except asyncio.CancelledError:
+                pass
+
+        silence_task = asyncio.create_task(_silence_prompt())
+
+    def _cancel_silence_timer():
+        nonlocal silence_task
+        if silence_task:
+            silence_task.cancel()
+            silence_task = None
+
     @session.on("agent_state_changed")
     def _on_agent_state_changed(ev: AgentStateChangedEvent):
+        nonlocal is_listening
+        is_listening = (ev.new_state == "listening")
+        
+        # Handle silence timeout when state changes
+        if is_listening:
+            _reset_silence_timer()
+        else:
+            _cancel_silence_timer()
+
         if (
             ev.new_state == "speaking"
             and last_eou_metrics
@@ -293,6 +333,7 @@ async def entrypoint(ctx: JobContext):
 
     @session.on("user_input_transcribed")
     def _on_user_input_transcribed(ev):
+        _cancel_silence_timer()
         if ev.is_final and ev.transcript.strip():
             print(f"\n\033[92m[CANDIDATE] >>> {ev.transcript.strip()}\033[0m\n", flush=True)
 

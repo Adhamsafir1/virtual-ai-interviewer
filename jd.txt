@@ -1,30 +1,72 @@
-Applied Scientist, Central Seller Fulfillment
-Job ID: 10466440 | Amazon Retail India Private Limited
-Description
-We are seeking a stellar Machine Learning scientist who has experience developing and shipping large scale ML products with visible customer impact. We would prefer if your previous work has been in developing scalable Agentic, RL or forecasting systems. Strong academic background in Statistics, Machine Learning & Deep Learning is required with Tier -1 publications being a plus.
+Senior AWS Devops Architect with Landing Zone
 
-• Master’s degree in CS or ML related fields
-• Scientist/Tech Lead creating and shipping impactful ML products.
-• Ability to write clear, structured and modularized code in Python.
-• Expertise in Deep Learning frameworks such as Tensorflow, Keras and Pytorch & Agentic frameworks such as LangChain, Crew AI etc.
-• Industry experience designing complex scalable AI systems.
-• Experience and technical expertise across various science domains. Crucial ones being statistics, deep & machine learning.
-• Experience creating data pipelines & proficient in querying data from Spark/HIVE/Redshift/other large scale data warehousing platforms.
-• Expert in distilling informal customer requirements into problem definitions, dealing with ambiguity and formulating ML products to solve these problems.
+Fort Worth, TX- Onsite
 
+12 Months Contract
 
-Key job responsibilities
-In this position, you will be a key contributor (with direct leadership visibility) building, productionizing (real & batch) and measuring impact of state of the art personalized Gen AI systems for Amazon global selling partners and contribute to Amazon wide research in this area in the form of publications and white papers. You will work with global leaders and teams across time zones on a regular basis.
+Job Description
 
-About the team
-Millions of Sellers list their products for sale on the Amazon Marketplace. Sellers are a critical part of Amazon’s ecosystem to deliver on our vision of offering the Earth’s largest selection and lowest prices. In this ecosystem our team plays a critical role in enabling Sellers across EU5, China, Japan, Australia, Brazil and Turkey to make their Selection available to customers globally and deliver the experience they have come to expect from Amazon.
+The Role
 
-We help independent sellers compete against our first-party business by investing in and offering them the very best selling tools we could imagine and build. We are pushing the boundaries of these machine learning tools in areas of Agentic, recommendation and forecasting systems to help our sellers sell more and across borders.
+We are looking for someone who can work directly with enterprise customers to design, build, and deliver cloud foundations that support large-scale platforms and migration programs. This is a consulting role with real hands-on depth. You will not just advise — you to build alongside delivery teams and own the technical outcomes.
 
-Basic Qualifications
-- Experience programming in Java, C++, Python or related language
-- Experience with SQL and an RDBMS (e.g., Oracle) or Data Warehouse
+Key Responsibilities
 
-Preferred Qualifications
-- Experience implementing algorithms using both toolkits and self-developed code
-- Have publications at top-tier peer-reviewed conferences or journals
+Design and implement AWS Landing Zones (Control Tower, AFT, multi-account strategy) with governance, networking, identity, and security baselines
+Define cloud platform strategies for application modernization, database migrations, container orchestration (EKS), and hybrid architecture
+Build and optimize Infrastructure CI/CD pipelines using Azure DevOps or similar (YAML pipelines, service connections, environments, approvals) with Terraform/Terragrunt as the primary IaC tool
+Design Terraform module architectures including reusable modules, remote state management, workspace strategies, and drift detection for enterprise-scale AWS environments
+Establish governance frameworks using AWS Service Control Policies, IAM, Cost Explorer, tagging strategies, and compliance guardrails — all deployed and enforced through CI/CD
+Lead platform engineering efforts including EKS cluster design, networking (VPC, Transit Gateway, PrivateLink), and security architecture
+Implement observability and monitoring strategies using CloudWatch, Datadog, or similar tooling
+Guide and mentor delivery teams through complex technical decisions
+
+Required Qualifications
+
+8+ years in cloud infrastructure with deep hands-on experience in AWS
+Expert-level Terraform skills including modules, providers, state management, workspaces, CI/CD integration, and managing large multi-environment deployments
+Strong CI/CD pipeline experience (Azure DevOps YAML pipelines, GitHub Actions, or similar) for infrastructure delivery including multi-stage deployments, variable groups, release gates, and artifact management
+Proven track record delivering Landing Zones at enterprise scale (multi-account strategy, hub-spoke networking, SCPs, policy-as-code via Terraform)
+Strong experience with AWS core services: EKS, RDS, IAM, VPC, S3, Secrets Manager, KMS, CloudFormation/CDK
+Solid understanding of Infrastructure CI/CD patterns like plan/apply workflows, automated testing, drift detection, and governed promotion across environments
+Experience with containerization and Kubernetes (EKS, Helm, ArgoCD/GitOps patterns)
+Ability to consult at the executive level and translate technical complexity into business decisions
+Experience leading or guiding delivery teams through platform builds and migrations without being a people manager
+Comfortable working in ambiguous, fast-moving enterprise environments
+
+Good to Have
+
+AWS certifications (Solutions Architect Professional, DevOps Engineer Professional)
+Azure knowledge (Landing Zones, Azure DevOps) as a secondary cloud
+Experience with EKS, service mesh (Istio), and GitOps (ArgoCD)
+Database migration experience (RDS, DMS, PostgreSQL)
+Background in regulated industries (pharma, financial services, manufacturing)
+Experience with security scanning integration (SAST, DAST, SCA) in CI/CD pipelines
+SAP on AWS migration experience
+
+A Few Things to Note
+
+This is not a pure advisory or slide-deck role. You will be hands-on.
+This is not an operations or support role. You build foundations and move on.
+This is not a single-project role. You will work across multiple enterprise customers.
+
+Department/Project: HCLS
+
+Skill Category: DevOps
+
+Key Skills — Must Have
+
+AWS
+DevOps, 
+CI/CD Pipelines, 
+Terraform, Infrastructure as Code (IaC) 
+EKS/Kubernetes
+AWS Landing Zones
+Azure DevOps
+
+Key Skills — Nice To Have
+
+ArgoCD, 
+Datadog, 
+Security Scanning, 
+Database Migrations

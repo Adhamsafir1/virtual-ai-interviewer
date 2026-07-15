@@ -1,85 +1,109 @@
 [
   {
     "id": 1,
-    "category": "Technical",
-    "question": "Explain how you would design a scalable agentic system for real-time recommendation personalization on an e-commerce platform. Discuss the architecture, key components (e.g., user modeling, retrieval, ranking), and trade-offs between latency, accuracy, and cost.",
+    "category": "Project",
+    "question": "You mentioned deploying a multi-tier web app using Terraform in your Infrastructure as Code project. Can you walk me through your role in designing that architecture? Specifically, how did you structure the Terraform modules, handle state management, and ensure the infrastructure was production-ready?",
     "expected_key_points": [
-      "Describe a modular architecture (e.g., microservices, event-driven) with clear separation of concerns",
-      "Discuss techniques for handling real-time data (e.g., streaming, feature stores)",
-      "Explain trade-offs between rule-based vs. ML-based ranking and retrieval",
-      "Mention scalability considerations (e.g., sharding, caching, distributed training)"
+      "Terraform module structure and reusability",
+      "State management strategy (e.g., remote backend, workspaces)",
+      "Production considerations (e.g., networking, security, scalability)",
+      "Outcome or impact of the deployment"
     ],
-    "difficulty": "Hard"
+    "difficulty": "Medium"
   },
   {
     "id": 2,
-    "category": "Technical",
-    "question": "Given a dataset with sparse user-item interactions, how would you design a hybrid recommender system combining collaborative filtering and deep learning? Provide a step-by-step approach, including data preprocessing, model selection, and evaluation metrics.",
+    "category": "Experience",
+    "question": "At RND Softek, you built CI/CD pipelines for Docker-based microservices using Jenkins and GitHub Actions. Can you describe a time when you had to optimize or troubleshoot one of these pipelines? What was the challenge, and how did you resolve it?",
     "expected_key_points": [
-      "Explain how to combine matrix factorization (collaborative filtering) with neural networks (e.g., two-tower models)",
-      "Discuss data preprocessing (e.g., handling cold-start, implicit feedback)",
-      "Describe evaluation metrics (e.g., precision@k, recall@k, NDCG)",
-      "Mention techniques for handling sparsity (e.g., embeddings, side information)"
+      "Specific pipeline challenge (e.g., performance, reliability, security)",
+      "Steps taken to diagnose and resolve the issue",
+      "Collaboration with other teams (if applicable)",
+      "Outcome or improvement achieved"
     ],
     "difficulty": "Medium"
   },
   {
     "id": 3,
-    "category": "Technical",
-    "question": "You are building a forecasting system to predict seller demand for Amazon’s global marketplace. How would you approach this problem using time-series forecasting models (e.g., ARIMA, Prophet, or deep learning)? Discuss feature engineering, model selection, and evaluation strategies.",
+    "category": "Skill",
+    "question": "You list Terraform as a core skill. Can you explain how you’ve used Terraform to manage drift detection in a multi-environment AWS deployment? What tools or strategies did you employ to ensure infrastructure consistency?",
     "expected_key_points": [
-      "Explain feature engineering (e.g., lag features, rolling statistics, external factors)",
-      "Compare statistical (e.g., ARIMA) vs. deep learning (e.g., LSTMs, Transformers) approaches",
-      "Discuss evaluation metrics (e.g., MAE, RMSE, MAPE) and backtesting",
-      "Mention techniques for handling seasonality and trends"
-    ],
-    "difficulty": "Medium"
-  },
-  {
-    "id": 4,
-    "category": "Technical",
-    "question": "How would you implement a fault-tolerant, distributed system for training a large-scale deep learning model (e.g., a transformer for NLP) using PyTorch or TensorFlow? Discuss data parallelism, model parallelism, and fault recovery strategies.",
-    "expected_key_points": [
-      "Explain data parallelism (e.g., using PyTorch’s DistributedDataParallel)",
-      "Discuss model parallelism for large models (e.g., tensor sharding)",
-      "Describe fault recovery strategies (e.g., checkpointing, distributed training libraries like Horovod)",
-      "Mention monitoring and logging for distributed training"
+      "Terraform drift detection methods (e.g., `terraform plan`, custom scripts)",
+      "Integration with CI/CD for automated drift checks",
+      "Handling drift resolution (e.g., automated apply, manual intervention)",
+      "Example or scenario from past experience"
     ],
     "difficulty": "Hard"
   },
   {
-    "id": 5,
-    "category": "Gap Analysis",
-    "question": "Your resume highlights experience with LangChain and vector databases for RAG pipelines, but the JD emphasizes agentic systems and publications. Can you describe a project where you designed an agentic system (e.g., multi-agent workflows) and explain how you would extend this to a production-scale system?",
+    "id": 4,
+    "category": "Certification",
+    "question": "You’ve earned the AWS Certified Badges and completed the Kubernetes for Beginners course. How have these certifications influenced your approach to designing AWS Landing Zones or EKS clusters? Can you share a specific example where this knowledge was applied?",
     "expected_key_points": [
-      "Describe the agentic system’s architecture (e.g., modular agents, communication protocols)",
-      "Explain how the system was evaluated (e.g., metrics, user feedback)",
-      "Discuss scalability challenges and solutions (e.g., distributed agents, load balancing)",
-      "Mention any publications or white papers (if applicable)"
+      "Relevant AWS certification topics (e.g., IAM, networking, security)",
+      "Kubernetes basics applied to EKS or container orchestration",
+      "Impact on design decisions or troubleshooting",
+      "Outcome or lesson learned"
+    ],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 5,
+    "category": "JD Alignment",
+    "question": "The JD emphasizes designing Terraform module architectures for enterprise-scale AWS environments. In your Infrastructure as Code project, you deployed a multi-tier web app using Terraform. How would you adapt that experience to design reusable Terraform modules for a Landing Zone with multi-account strategies and governance frameworks?",
+    "expected_key_points": [
+      "Reusability and modularity in Terraform design",
+      "Multi-account strategy (e.g., AWS Control Tower, AFT)",
+      "Governance frameworks (e.g., SCPs, IAM policies)",
+      "Scalability and maintainability considerations"
     ],
     "difficulty": "Hard"
   },
   {
     "id": 6,
-    "category": "Behavioral",
-    "question": "Tell me about a time when you had to deal with ambiguous requirements or shifting priorities in a project. How did you approach the problem, and what was the outcome?",
+    "category": "Gap Analysis",
+    "question": "The role requires hands-on experience with AWS Landing Zones, including Control Tower and multi-account strategies. Your resume highlights AWS services like EC2, S3, and IAM, but doesn’t explicitly mention Control Tower or Landing Zone deployments. Can you describe a time when you designed or implemented a multi-account AWS strategy, even if it wasn’t called a ‘Landing Zone’? What were the key challenges and outcomes?",
     "expected_key_points": [
-      "Describe the context and ambiguity faced",
-      "Explain how you gathered requirements and iterated on solutions",
-      "Discuss collaboration with stakeholders and trade-offs made",
-      "Highlight the impact of your approach (e.g., improved system design, user satisfaction)"
+      "Multi-account strategy (e.g., hub-spoke, OUs, SCPs)",
+      "Tools or methods used (e.g., Terraform, AWS Organizations)",
+      "Challenges (e.g., networking, security, governance)",
+      "Outcome or impact of the implementation"
     ],
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": 7,
     "category": "Situational",
-    "question": "Imagine you are leading a team to build a new forecasting system for Amazon’s sellers. Mid-way through the project, you discover that the model’s predictions are biased against certain seller categories. How would you diagnose the issue, address it, and ensure fairness in the system?",
+    "question": "Imagine you’re consulting with a large enterprise customer who needs to modernize their applications and migrate to AWS. They have a mix of legacy monoliths and microservices, and their current CI/CD pipelines are manual and error-prone. How would you approach designing a Landing Zone and CI/CD strategy for them? What are the first steps you’d take, and how would you prioritize the work?",
     "expected_key_points": [
-      "Explain how you would diagnose bias (e.g., data analysis, fairness metrics)",
-      "Discuss techniques for mitigating bias (e.g., reweighting, adversarial training)",
-      "Describe how you would communicate findings and solutions to stakeholders",
-      "Mention long-term strategies for monitoring and maintaining fairness"
+      "Assessment of current state (e.g., infrastructure, pipelines, security)",
+      "Landing Zone design (e.g., multi-account, networking, governance)",
+      "CI/CD modernization (e.g., automation, testing, deployment strategies)",
+      "Prioritization and phased approach"
+    ],
+    "difficulty": "Hard"
+  },
+  {
+    "id": 8,
+    "category": "Leadership",
+    "question": "The role involves leading platform engineering efforts and guiding delivery teams through complex technical decisions. Can you share an example where you took ownership of a technical decision that had significant impact on a project? How did you collaborate with other teams to ensure the decision was well-received and successfully implemented?",
+    "expected_key_points": [
+      "Specific technical decision and context",
+      "Collaboration with stakeholders (e.g., developers, architects, executives)",
+      "How ownership was demonstrated (e.g., research, prototyping, documentation)",
+      "Outcome or impact of the decision"
+    ],
+    "difficulty": "Medium"
+  },
+  {
+    "id": 9,
+    "category": "Behavioral",
+    "question": "Tell me about a time when you had to work in an ambiguous or fast-moving environment. How did you prioritize your tasks, and what steps did you take to ensure the project stayed on track? Can you share a specific example from your experience at Mazenet Solution or RND Softek?",
+    "expected_key_points": [
+      "Context of ambiguity or fast-moving environment",
+      "Approach to prioritization (e.g., stakeholder alignment, risk assessment)",
+      "Steps taken to mitigate risks or clarify requirements",
+      "Outcome or lesson learned"
     ],
     "difficulty": "Medium"
   }

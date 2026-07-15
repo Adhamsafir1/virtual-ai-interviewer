@@ -1,86 +1,25 @@
 {
-  "interview_date": "2026-07-10T17:04:09.136971",
-  "total_base_questions": 5,
+  "interview_date": "2026-07-15T12:04:48.930992",
+  "total_base_questions": 9,
+  "status": "in_progress",
   "responses": [
     {
       "question_number": 1,
-      "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
-      "answer": "The candidate mentioned using ports to communicate between the frontend and backend via RESTful APIs, referring to it as a 'metal bar.' They did not provide specific details about versioning, pagination, caching, or rate limiting.",
+      "question": "Could you tell me a little about yourself and the kind of work you've been doing recently?",
+      "answer": "Krishna is a DevOps engineer with four years of experience, previously a software engineer.",
       "is_followup": false,
-      "score": 2,
-      "feedback": "The answer lacked depth and specificity about RESTful API design and optimization. The candidate did not address versioning, pagination, caching, or rate limiting, which were key aspects of the question.",
-      "timestamp": "2026-07-10T17:01:32.563882"
+      "score": 7,
+      "feedback": "Good overview of experience and interests, but could use more detail.",
+      "timestamp": "2026-07-15T12:03:18.622232"
     },
     {
       "question_number": 2,
-      "question": "Can you walk us through your experience designing and optimizing RESTful APIs? Specifically, discuss how you've handled versioning, pagination, caching, and rate limiting in your previous projects.",
-      "answer": "The candidate described using RESTful APIs primarily for communication between frontend and backend systems. They mentioned using POST methods for operations like batch processing and deletion. They also referenced a 'risk score' system to identify which services to call and mentioned a new discovery feature that allows query-based access to APIs.",
+      "question": "You mentioned deploying a multi-tier web app using Terraform in your Infrastructure as Code project. Can you walk me through your role in designing that architecture? Specifically, how did you structure the Terraform modules, handle state management, and ensure the infrastructure was production-ready?",
+      "answer": "Krishna uses AWS and Terraform for deploying services, ensuring configurations are verified with teams.",
       "is_followup": false,
-      "score": 4,
-      "feedback": "The candidate provided a vague and unclear response. They did not address versioning, pagination, caching, or rate limiting, which were the key aspects of the question. Their explanation focused on basic API usage without demonstrating depth or understanding of API optimization techniques.",
-      "timestamp": "2026-07-10T17:01:57.888336"
-    },
-    {
-      "question_number": 3,
-      "question": "Describe a time when you had to mentor a junior developer. What approach did you take to ensure they understood the concepts and could contribute effectively to the team?",
-      "answer": "The candidate mentioned providing junior developers with detailed project information and ensuring they had a strong foundational understanding. They emphasized the importance of sharing knowledge and freezing indirects (possibly a typo for 'indirect questions' or similar) without further questioning.",
-      "is_followup": false,
-      "score": 3,
-      "feedback": "The response was unclear and lacked specific details about mentoring approaches. The candidate did not demonstrate a structured method for mentoring or ensuring understanding, and their explanation was vague and difficult to follow.",
-      "timestamp": "2026-07-10T17:03:02.536989"
-    },
-    {
-      "question_number": 4,
-      "question": "What approach did you take to structure the information or guide them through the learning process?",
-      "answer": "The candidate repeated their previous vague explanation about providing project information and ensuring a strong foundation. They reiterated the idea of freezing indirects without further questioning but did not clarify their mentoring approach.",
-      "is_followup": true,
-      "score": 2,
-      "feedback": "The candidate's response was unclear and did not address the question about structuring information or guiding the learning process. Their explanation remained vague and lacked actionable details.",
-      "timestamp": "2026-07-10T17:03:16.554507"
-    },
-    {
-      "question_number": 5,
-      "question": "Imagine you're tasked with integrating a third-party AI service into an existing full-stack application. The service has strict latency requirements, and your current infrastructure isn't meeting those needs. How would you approach this problem?",
-      "answer": "The candidate stated they did not have an answer to the question.",
-      "is_followup": false,
-      "score": 1,
-      "feedback": "The candidate admitted to not knowing how to approach the problem, indicating a lack of familiarity or experience with infrastructure optimization, latency management, or third-party integrations.",
-      "timestamp": "2026-07-10T17:03:37.849607"
-    },
-    {
-      "question_number": 6,
-      "question": "The job requires experience with WebRTC for real-time communication features, but your resume doesn't explicitly mention this technology. Can you share any experience you have with real-time communication technologies or describe how you would approach learning and implementing WebRTC in a project?",
-      "answer": "The candidate abruptly ended the conversation with a farewell, indicating they did not provide any response to the question about WebRTC or real-time communication technologies.",
-      "is_followup": false,
-      "score": 0,
-      "feedback": "The candidate did not address the question at all, demonstrating no engagement or willingness to discuss their experience or approach to learning WebRTC.",
-      "timestamp": "2026-07-10T17:03:54.369858"
-    },
-    {
-      "question_number": 7,
-      "question": "How would you design a scalable backend service for a real-time chat application using Python and Node.js? Discuss your choice of architecture, database design, and how you would handle high concurrency and low latency.",
-      "answer": "The candidate abruptly ended the conversation with a farewell and did not provide any response to the question about designing a scalable backend service for a real-time chat application.",
-      "is_followup": false,
-      "score": 0,
-      "feedback": "The candidate did not engage with the question at all, demonstrating no attempt to discuss architecture, database design, or handling concurrency and latency.",
-      "timestamp": "2026-07-10T17:04:06.637835"
-    },
-    {
-      "type": "FINAL_REPORT",
-      "interview_summary": "The candidate struggled significantly throughout the interview, demonstrating limited technical knowledge and poor communication skills. They were unable to provide clear or detailed responses to any of the questions asked, even when given opportunities to elaborate or refocus. The candidate's answers were often vague, off-topic, or entirely absent, indicating a lack of preparation and understanding of core concepts in RESTful APIs, mentoring, infrastructure optimization, real-time communication technologies, and scalable backend design.",
-      "average_score": 1.67,
-      "strengths": [
-        "Basic familiarity with RESTful APIs and POST methods was mentioned, though not explained clearly.",
-        "Willingness to engage with the interview process, despite difficulties in articulating responses."
-      ],
-      "weaknesses": [
-        "Inability to explain technical concepts clearly or in detail.",
-        "Lack of experience or knowledge in critical areas such as API optimization, mentoring, infrastructure scaling, and real-time communication technologies.",
-        "Poor communication skills, including vague and disjointed responses.",
-        "Failure to address key aspects of the questions asked, often deviating from the topic entirely.",
-        "No demonstrated ability to handle situational or technical challenges."
-      ],
-      "timestamp": "2026-07-10T17:04:09.136971"
+      "score": 6,
+      "feedback": "Good explanation of process, but lacks detail on module structure and state management.",
+      "timestamp": "2026-07-15T12:04:48.930992"
     }
   ]
 }
