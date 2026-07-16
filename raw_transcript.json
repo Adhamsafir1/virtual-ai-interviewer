@@ -47,23 +47,5 @@
       "speaker": "interviewer",
       "text": "It seems like we're having some technical difficulties. Let me try to reconnect with you. \n\nYou mentioned in your resume that you reduced setup time by 60% for a multi-tier web app using Terraform."
     }
-  ],
-  "final_report": {
-    "interview_summary": "The candidate struggled to provide coherent answers and was unable to effectively communicate their experience.",
-    "average_score": 2,
-    "strengths": [],
-    "weaknesses": [
-      "Lack of clear communication",
-      "Inability to respond to questions properly",
-      "Technical difficulties impacted performance"
-    ],
-    "evaluated_questions": [
-      {
-        "question": "Can you walk me through the project where you reduced setup time by 60% for a multi-tier web app using Terraform?",
-        "answer_summary": "The candidate did not provide a clear answer and repeatedly expressed confusion.",
-        "score": 1,
-        "feedback": "The candidate failed to understand the question and did not demonstrate any understanding of their resume content."
-      }
-    ]
-  }
+  ]
 }

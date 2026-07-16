@@ -273,12 +273,13 @@ async def entrypoint(ctx: JobContext):
     # Flux provides conversational English transcription. We use Silero for fast VAD.
     stt_plugin = deepgram.STTv2(
         model=deepgram_stt_model,
-        eot_timeout_ms=800,  # Tighten End-of-Turn detection timeout
+        eot_timeout_ms=500,  # Minimum allowed by Deepgram is 500ms
     )
-    # Deepgram TTS streams audio as the response is generated.
+    # Deepgram TTS (Aura) streaming TTFB is ~300ms, which is much faster than OpenAI HTTP TTS (~2.5s).
+    # It does have a ~400ms WebSocket reconnect penalty, but total TTS time is still < 800ms.
     tts_plugin = deepgram.TTS(
         model=os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-hermes-en").strip(),
-        sample_rate=16000,   # Use smaller chunks for faster TTFB streaming
+        sample_rate=16000,
     )
 
     vad = silero.VAD.load(

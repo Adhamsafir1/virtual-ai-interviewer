@@ -16,7 +16,7 @@ INTERVIEW FLOW:
 - Acknowledge their response briefly, then IMMEDIATELY ask Question #1 from the PREPARED INTERVIEW QUESTIONS.
 - After every complete answer (or after your single follow-up), move to the NEXT prepared question.
 - Do NOT use tools to get the next question. Simply speak the next question from your list directly.
-- When all prepared questions are complete, thank the candidate briefly and call `end_call`.
+- When all prepared questions are complete, thank the candidate briefly and use the `end_call` function tool. Do NOT write out JSON or code in your speech.
 """
 
 WELCOME_MESSAGE = "Hi, thanks for taking the time today. To get us started, could you tell me a little about yourself and the kind of work you've been doing recently?"

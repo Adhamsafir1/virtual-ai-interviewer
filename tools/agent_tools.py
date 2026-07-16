@@ -65,8 +65,7 @@ class AgentToolsMixin:
                 await asyncio.sleep(3.0)
                 await self.room.disconnect()
                 import os
-                import signal
-                os.kill(os.getpid(), signal.SIGINT)
+                os._exit(0)
 
             asyncio.create_task(delayed_disconnect())
             return "Ending the interview now. Say your goodbye!"
