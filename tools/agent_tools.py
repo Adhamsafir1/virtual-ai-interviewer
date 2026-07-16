@@ -36,33 +36,7 @@ class AgentToolsMixin:
         except Exception as e:
             logger.error("Failed to save responses: %s", e)
 
-    @function_tool
-    async def get_next_question(self, context: RunContext) -> str:
-        """Retrieves the next base interview question from the pre-generated list.
-        Call this to move to the next core interview topic when the candidate finishes their answer.
-        Returns the question text, or a completion message if all questions are done.
-        """
-        idx = self.current_question_index
 
-        if idx >= len(self.questions):
-            return (
-                "ALL_QUESTIONS_COMPLETE: All base interview questions have been asked. "
-                "Please thank the candidate, state that the interview is complete, and call the end_call tool to finish."
-            )
-
-        question_data = self.questions[idx]
-        self.current_question_index = idx + 1
-
-        question_text = question_data.get("question", "")
-        category = question_data.get("category", "general")
-        question_id = question_data.get("id", idx + 1)
-        total = len(self.questions)
-
-        logger.info("Serving base question %d/%d: %s", question_id, total, question_text[:80])
-
-        return (
-            f"NEXT BASE_QUESTION ({question_id}/{total}) [{category}]: {question_text}"
-        )
 
     @function_tool
     async def end_call(self, context: RunContext) -> str:
