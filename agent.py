@@ -88,7 +88,7 @@ def load_questions() -> list[dict]:
 class Assistant(Agent, AgentToolsMixin):
     def __init__(self, room) -> None:
         self.questions = load_questions()
-        formatted_questions = "\n".join(f"Question #{i+1}: {q}" for i, q in enumerate(self.questions))
+        formatted_questions = "\n".join(f"Question #{i+1}: {q.get('question', '')}" for i, q in enumerate(self.questions))
         full_instructions = f"""{SYSTEM_PROMPT}
 
 PREPARED INTERVIEW QUESTIONS (ASK THESE EXACT 9 QUESTIONS IN ORDER):
@@ -225,35 +225,35 @@ async def entrypoint(ctx: JobContext):
     mistral_model = os.getenv("MISTRAL_MODEL", "mistral-small-latest")
     mistral_api_key = os.getenv("MISTRAL_API_KEY", "")
     groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
-    groq_model = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant").strip()
+    groq_model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
 
     providers: list[llm.LLM] = []
 
-    # 1. Primary: OpenAI
-    if openai_api_key:
-        logger.info("Configured Primary LLM: OpenAI (%s)", openai_llm_model)
-        providers.append(openai.LLM(model=openai_llm_model, api_key=openai_api_key, temperature=0.2))
-
-    # 2. Fallback 1: Mistral
-    if mistral_api_key:
-        logger.info("Configured Fallback #1 LLM: Mistral (%s)", mistral_model)
-        providers.append(
-            openai.LLM(
-                api_key=mistral_api_key,
-                base_url="https://api.mistral.ai/v1",
-                model=mistral_model,
-                temperature=0.2,
-            )
-        )
-
-    # 3. Fallback 2: Groq
+    # 1. Primary: Groq (Fastest)
     if groq_api_key:
-        logger.info("Configured Fallback #2 LLM: Groq (%s)", groq_model)
+        logger.info("Configured Primary LLM: Groq (%s)", groq_model)
         providers.append(
             openai.LLM(
                 api_key=groq_api_key,
                 base_url="https://api.groq.com/openai/v1",
                 model=groq_model,
+                temperature=0.2,
+            )
+        )
+
+    # 2. Fallback 1: OpenAI
+    if openai_api_key:
+        logger.info("Configured Fallback #1 LLM: OpenAI (%s)", openai_llm_model)
+        providers.append(openai.LLM(model=openai_llm_model, api_key=openai_api_key, temperature=0.2))
+
+    # 3. Fallback 2: Mistral
+    if mistral_api_key:
+        logger.info("Configured Fallback #2 LLM: Mistral (%s)", mistral_model)
+        providers.append(
+            openai.LLM(
+                api_key=mistral_api_key,
+                base_url="https://api.mistral.ai/v1",
+                model=mistral_model,
                 temperature=0.2,
             )
         )
@@ -273,13 +273,19 @@ async def entrypoint(ctx: JobContext):
     # Flux provides conversational English transcription. We use Silero for fast VAD.
     stt_plugin = deepgram.STTv2(
         model=deepgram_stt_model,
+        eot_timeout_ms=800,  # Tighten End-of-Turn detection timeout
     )
     # Deepgram TTS streams audio as the response is generated.
     tts_plugin = deepgram.TTS(
         model=os.getenv("DEEPGRAM_TTS_MODEL", "aura-2-hermes-en").strip(),
+        sample_rate=16000,   # Use smaller chunks for faster TTFB streaming
     )
 
-    vad = silero.VAD.load()
+    vad = silero.VAD.load(
+        min_silence_duration=0.3,
+        activation_threshold=0.45,
+        prefix_padding_duration=0.3,
+    )
 
     session = AgentSession(
         stt=stt_plugin,
@@ -289,16 +295,23 @@ async def entrypoint(ctx: JobContext):
         turn_handling=TurnHandlingOptions(
             turn_detection="vad",
             endpointing={
-                "min_delay": 0.1,
-                "max_delay": 0.25,
+                "min_delay": 0.08,
+                "max_delay": 0.2,
             },
-            preemptive_generation={"enabled": True},  # Starts LLM early to hide TTFT delay
-            aec_warmup_duration=1.0,               # default 3.0s — blocks interruptions after agent speaks
-            false_interruption_timeout=None,       # default 2.0s — hidden delay on "false" interruptions
-            min_interruption_duration=0.3,         # react to shorter interruptions faster
+            preemptive_generation={
+                "enabled": True,
+                "preemptive_tts": True,  # Preemptively start TTS as well
+            },
+            interruption={
+                "enabled": True,
+                "min_duration": 0.3,
+                "min_words": 0,
+                "false_interruption_timeout": None,
+            },
         ),
+        aec_warmup_duration=0.0,
         conn_options=SessionConnectOptions(
-            llm_conn_options=APIConnectOptions(max_retry=1, timeout=4.0),
+            llm_conn_options=APIConnectOptions(max_retry=1, timeout=3.0),
         ),
     )
     usage_collector = metrics.UsageCollector()
